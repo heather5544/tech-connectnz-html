@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechConnect NZ | Settings & Preferences</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --info: #3182ce;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .main {
+            padding-top: 90px;
+            padding-bottom: 3rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+            max-width: 700px;
+        }
+
+        /* Settings Layout */
+        .settings-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 2rem;
+        }
+
+        /* Settings Sidebar */
+        .settings-sidebar {
+            position: sticky;
+            top: 110px;
+            height: fit-content;
+        }
+
+        .settings-nav {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .nav-section {
+            border-bottom: 1px solid var(--gray-200);
+            padding: 1rem 0;
+        }
+
+        .nav-section:last-child {
+            border-bottom: none;
+        }
+
+        .nav-section-title {
+            padding: 0 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--gray-500);
+            margin-bottom: 0.75rem;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 1.5rem;
+            color: var(--gray-700);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover {
+            background-color: var(--gray-100);
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            background-color: var(--gray-100);
+            color: var(--primary);
+            border-left-color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Settings Content */
+        .settings-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .settings-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .settings-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .settings-section-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .settings-section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(186, 104, 200, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-text {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(156, 39, 176, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-danger {
+            background-color: var(--error);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c53030;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(229, 62, 62, 0.2);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-300);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(24px);
+        }
+
+        .toggle-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-text {
+            font-weight: 500;
+        }
+
+        .option-group {
+            margin-top: 0.75rem;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .option-item:hover {
+            border-color: var(--primary-light);
+            background-color: var(--gray-100);
+        }
+
+        .option-item.selected {
+            border-color: var(--primary);
+            background-color: rgba(156, 39, 176, 0.05);
+        }
+
+        .option-radio {
+            margin-right: 1rem;
+        }
+
+        .option-content {
+            flex: 1;
+        }
+
+        .option-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .option-description {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .verification-badge.verified {
+            background-color: rgba(72, 187, 120, 0.1);
+            border-color: rgba(72, 187, 120, 0.3);
+            color: var(--success);
+        }
+
+        .verification-badge.unverified {
+            background-color: rgba(237, 137, 54, 0.1);
+            border-color: rgba(237, 137, 54, 0.3);
+            color: var(--warning);
+        }
+
+        .verification-badge-icon {
+            margin-right: 0.5rem;
+        }
+
+        .verification-badge-action {
+            margin-left: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .verification-badge-action:hover {
+            text-decoration: underline;
+        }
+
+        .profile-picture-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--gray-300);
+            margin-right: 1.5rem;
+            overflow: hidden;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-picture-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .auth-methods {
+            margin-top: 1.5rem;
+        }
+
+        .auth-method {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .auth-method-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-method-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--gray-200);
+            border-radius: 4px;
+        }
+
+        .auth-method-details {
+            font-size: 0.95rem;
+        }
+
+        .auth-method-name {
+            font-weight: 500;
+        }
+
+        .auth-method-status {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .language-flag {
+            display: inline-block;
+            width: 24px;
+            height: 18px;
+            margin-right: 0.5rem;
+            background-color: var(--gray-300);
+            border-radius: 2px;
+        }
+
+        .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .notification-item:last-child {
+            border-bottom: none;
+        }
+
+        .notification-info {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .notification-description {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .notification-controls {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .deactivation-warning {
+            background-color: rgba(229, 62, 62, 0.1);
+            border: 1px solid rgba(229, 62, 62, 0.3);
+            color: var(--error);
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .settings-footer-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        @media (max-width: 992px) {
+            .settings-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .settings-content {
+                padding: 1.5rem;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .auth-method {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .auth-method-action {
+                margin-top: 1rem;
+                align-self: flex-end;
+            }
+
+            .notification-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .notification-controls {
+                margin-top: 1rem;
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="/api/placeholder/40/40" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="matches.html">My Matches</a></li>
+                    <li><a href="meetings.html">Meetings</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Settings & Preferences</h1>
+                <p class="page-description">Manage your account settings, notification preferences, and privacy options.</p>
+            </div>
+
+            <div class="settings-layout">
+                <!-- Settings Sidebar -->
+                <aside class="settings-sidebar">
+                    <nav class="settings-nav">
+                        <div class="nav-section">
+                            <div class="nav-section-title">Account</div>
+                            <a href="#profile" class="nav-link active">Profile Information</a>
+                            <a href="#security" class="nav-link">Security & Login</a>
+                            <a href="#language" class="nav-link">Language & Region</a>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-section-title">Preferences</div>
+                            <a href="#notifications" class="nav-link">Notifications</a>
+                            <a href="#privacy" class="nav-link">Privacy</a>
+                            <a href="#mentorship" class="nav-link">Mentorship Preferences</a>
+                        </div>
+                        <div class="nav-section">
+                            <div class="nav-section-title">Account Management</div>
+                            <a href="#data" class="nav-link">Data & Downloads</a>
+                            <a href="#deactivation" class="nav-link">Deactivation</a>
+                        </div>
+                    </nav>
+                </aside>
+
+                <!-- Settings Content -->
+                <div class="settings-content">
+                    <!-- Profile Information Section -->
+                    <section id="profile" class="settings-section">
+                        <div class="settings-section-header">
+                            <h2 class="settings-section-title">Profile Information</h2>
+                        </div>
+
+                        <div class="profile-picture-section">
+                            <div class="profile-picture">
+                                <img src="/api/placeholder/100/100" alt="Profile Picture">
+                            </div>
+                            <div class="profile-picture-actions">
+                                <button class="btn btn-outline">Change Photo</button>
+                                <button class="btn btn-outline">Remove Photo</button>
+                            </div>
+                        </div>
+
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="first-name">First Name</label>
+                                    <input type="text" id="first-name" class="form-control" value="Aroha">
+                                </div>
+                                <div class="form-group">
+                                    <label for="last-name">Last Name</label>
+                                    <input type="text" id="last-name" class="form-control" value="Williams">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" class="form-control" value="aroha.williams@example.com">
+                                <div class="verification-badge verified">
+                                    <span class="verification-badge-icon">✓</span>
+                                    Verified
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" class="form-control" value="+64 21 123 4567">
+                                <div class="verification-badge unverified">
+                                    <span class="verification-badge-icon">!</span>
+                                    Not Verified
+                                    <a href="#" class="verification-badge-action">Verify Now</a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="job-title">Job Title</label>
+                                <input type="text" id="job-title" class="form-control" value="UX Designer">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="company">Company/Organization</label>
+                                <input type="text" id="company" class="form-control" value="Design Solutions NZ">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="bio">Professional Bio</label>
+                                <textarea id="bio" class="form-control">UX Designer with 6+ years of experience in creating user-centered digital experiences. Passionate about mentoring women and non-binary individuals in design and tech fields.</textarea>
+                                <div class="form-text">This bio will be visible to potential mentors/mentees.</div>
+                            </div>
+
+                            <div class="settings-footer">
+                                <div class="settings-footer-buttons">
+                                    <button type="button" class="btn btn-outline">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Security & Login Section -->
+                    <section id="security" class="settings-section" style="display: none;">
+                        <div class="settings-section-header">
+                            <h2 class="settings-section-title">Security & Login</h2>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" class="form-control">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="toggle-label">
+                                <span class="toggle-text">Two-Factor Authentication</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="form-text">Add an extra layer of security to your account by requiring a verification code in addition to your password.</div>
+                        </div>
+
+                        <div class="auth-methods">
+                            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Connected Accounts</h3>
+                            
+                            <div class="auth-method">
+                                <div class="auth-method-info">
+                                    <div class="auth-method-icon">G</div>
+                                    <div class="auth-method-details">
+                                        <div class="auth-method-name">Google</div>
+                                        <div class="auth-method-status">Connected as aroha.williams@gmail.com</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline">Disconnect</button>
+                            </div>
+
+                            <div class="auth-method">
+                                <div class="auth-method-info">
+                                    <div class="auth-method-icon">in</div>
+                                    <div class="auth-method-details">
+                                        <div class="auth-method-name">LinkedIn</div>
+                                        <div class="auth-method-status">Not Connected</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline">Connect</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <label>Login Sessions</label>
+                            <div class="auth-method">
+                                <div class="auth-method-info">
+                                    <div class="auth-method-icon">💻</div>
+                                    <div class="auth-method-details">
+                                        <div class="auth-method-name">Chrome on MacBook Pro</div>
+                                        <div class="auth-method-status">Wellington, NZ • Active now</div>
+                                    </div>
+                                </div>
+                                <div class="auth-method-action">This Device</div>
+                            </div>
+
+                            <div class="auth-method">
+                                <div class="auth-method-info">
+                                    <div class="auth-method-icon">📱</div>
+                                    <div class="auth-method-details">
+                                        <div class="auth-method-name">Safari on iPhone</div>
+                                        <div class="auth-method-status">Wellington, NZ • Last active yesterday</div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-outline">Log Out</button>
+                            </div>
+                        </div>
+
+                        <div class="settings-footer">
+                            <div class="settings-footer-buttons">
+                                <button type="button" class="btn btn-outline">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Language & Region Section -->
+                    <section id="language" class="settings-section" style="display: none;">
+                        <div class="settings-section-header">
+                            <h2 class="settings-section-title">Language & Region</h2>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="language">Display Language</label>
+                            <select id="language" class="form-control">
+                                <option value="en" selected><span class="language-flag"></span> English</option>
+                                <option value="mi">Te Reo Māori</option>
+                                <option value="zh">中文 (Chinese)</option>
+                                <option value="hi">हिन्दी (Hindi)</option>
+                                <option value="sm">Gagana Sāmoa (Samoan)</option>
+                                <option value="to">Lea Faka-Tonga (Tongan)</option>
+                            </select>
+                            <div class="form-text">This will change the language of the interface and notifications.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="region">Region</label>
+                            <select id="region" class="form-control">
+                                <option value="nz" selected>New Zealand</option>
+                                <option value="au">Australia</option>
+                                <option value="ws">Samoa</option>
+                                <option value="to">Tonga</option>
+                                <option value="fj">Fiji</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timezone">Timezone</label>
+                            <select id="timezone" class="form-control">
+                                <option value="pacific/auckland" selected>(GMT+12:00) Auckland, Wellington</option>
+                                <option value="pacific/chatham">(GMT+12:45) Chatham Islands</option>
+                                <option value="pacific/fiji">(GMT+12:00) Fiji</option>
+                                <option value="pacific/samoa">(GMT+13:00) Samoa</option>
+                                <option value="pacific/tongatapu">(GMT+13:00) Nuku'alofa</option>
+                            </select>
+                            <div class="form-text">This will be used for meeting times and notifications.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date-format">Date Format</label>
+                            <select id="date-format" class="form-control">
+                                <option value="dd/mm/yyyy" selected>DD/MM/YYYY (e.g., 31/12/2025)</option>
+                                <option value="mm/dd/yyyy">MM/DD/YYYY (e.g., 12/31/2025)</option>
+                                <option value="yyyy-mm-dd">YYYY-MM-DD (e.g., 2025-12-31)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="time-format">Time Format</label>
+                            <select id="time-format" class="form-control">
+                                <option value="24h" selected>24-hour (e.g., 14:30)</option>
+                                <option value="12h">12-hour (e.g., 2:30 PM)</option>
+                            </select>
+                        </div>
+
+                        <div class="settings-footer">
+                            <div class="settings-footer-buttons">
+                                <button type="button" class="btn btn-outline">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Notifications Section -->
+                    <section id="notifications" class="settings-section" style="display: none;">
+                        <div class="settings-section-header">
+                            <h2 class="settings-section-title">Notifications</h
