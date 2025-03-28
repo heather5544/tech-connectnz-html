@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechConnect NZ | Dashboard</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: var(--primary-dark);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-logo img {
+            width: 30px;
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .sidebar-user {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            margin-right: 0.75rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+        }
+
+        .user-role {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        .sidebar-nav {
+            padding: 1.5rem 0;
+        }
+
+        .nav-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .nav-group-title {
+            padding: 0 1.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            color: var(--secondary-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            color: var(--gray-300);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+            color: white;
+            border-left: 4px solid var(--accent);
+        }
+
+        .nav-icon {
+            margin-right: 0.75rem;
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            margin-left: 250px;
+            padding: 2rem;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .page-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-title {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        .stat-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: var(--gray-200);
+            color: var(--primary);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .stat-description {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Matches Section */
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .section-action {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .section-action:hover {
+            text-decoration: underline;
+        }
+
+        /* Match Cards */
+        .matches-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .match-card {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .match-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .match-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+            background-color: var(--gray-100);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .match-name {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .match-score {
+            background-color: var(--primary-light);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 99px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .match-body {
+            padding: 1rem;
+        }
+
+        .match-info {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .match-info-label {
+            font-weight: 500;
+            color: var(--gray-600);
+        }
+
+        .match-actions {
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .match-btn {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Upcoming Meetings */
+        .meetings-list {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+        }
+
+        .meeting-item {
+            display: flex;
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .meeting-item:last-child {
+            border-bottom: none;
+        }
+
+        .meeting-date {
+            width: 80px;
+            text-align: center;
+            border-right: 1px solid var(--gray-200);
+            padding-right: 1rem;
+        }
+
+        .meeting-month {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .meeting-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .meeting-time {
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .meeting-details {
+            flex: 1;
+            padding-left: 1rem;
+        }
+
+        .meeting-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .meeting-with {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 0.5rem;
+        }
+
+        .meeting-actions {
+            margin-left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .meeting-action {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .meeting-action:hover {
+            color: var(--primary);
+        }
+
+        /* Goals Section */
+        .goals-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .goal-item {
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .goal-status {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+
+        .goal-status.in-progress {
+            background-color: var(--warning);
+        }
+
+        .goal-status.completed {
+            background-color: var(--success);
+        }
+
+        .goal-details {
+            flex: 1;
+        }
+
+        .goal-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .goal-meta {
+            display: flex;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+        }
+
+        .goal-date {
+            margin-right: 1rem;
+        }
+
+        .goal-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .goal-action {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .goal-action:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+                overflow: hidden;
+            }
+
+            .sidebar-logo span, 
+            .user-name, 
+            .user-role,
+            .nav-group-title,
+            .nav-item span {
+                display: none;
+            }
+
+            .user-avatar {
+                margin-right: 0;
+            }
+
+            .sidebar-user,
+            .sidebar-header {
+                justify-content: center;
+                padding: 1rem;
+            }
+
+            .nav-item {
+                justify-content: center;
+                padding: 0.75rem;
+            }
+
+            .nav-icon {
+                margin-right: 0;
+                font-size: 1.25rem;
+            }
+
+            .main {
+                margin-left: 80px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="/api/placeholder/30/30" alt="TechConnect Logo">
+                <span>TechConnect</span>
+            </div>
+        </div>
+        <div class="sidebar-user">
+            <div class="user-info">
+                <div class="user-avatar">
+                    <img src="/api/placeholder/40/40" alt="User Avatar">
+                </div>
+                <div>
+                    <div class="user-name">Aroha Williams</div>
+                    <div class="user-role">Mentee</div>
+                </div>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="nav-group">
+                <div class="nav-group-title">Main</div>
+                <a href="#" class="nav-item active">
+                    <div class="nav-icon">📊</div>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">👥</div>
+                    <span>My Matches</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">📅</div>
+                    <span>Meetings</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">🎯</div>
+                    <span>Goals</span>
+                </a>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title">Resources</div>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">📝</div>
+                    <span>Tech Resources</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">📰</div>
+                    <span>Blog</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">🗓️</div>
+                    <span>Events</span>
+                </a>
+            </div>
+            <div class="nav-group">
+                <div class="nav-group-title">Account</div>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">👤</div>
+                    <span>Profile</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">⚙️</div>
+                    <span>Settings</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <div class="nav-icon">🚪</div>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <main class="main">
+        <div class="page-header">
+            <h1 class="page-title">Dashboard</h1>
+            <div class="page-actions">
+                <button class="btn btn-outline">Browse Mentors</button>
+                <button class="btn btn-primary">Schedule Meeting</button>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Current Mentors</div>
+                    <div class="stat-icon">🧑‍🏫</div>
+                </div>
+                <div class="stat-value">2</div>
+                <div class="stat-description">Active mentorship relationships</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Meetings Completed</div>
+                    <div class="stat-icon">📅</div>
+                </div>
+                <div class="stat-value">8</div>
+                <div class="stat-description">Total mentorship sessions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-title">Goals Progress</div>
+                    <div class="stat-icon">🎯</div>
+                </div>
+                <div class="stat-value">3/5</div>
+                <div class="stat-description">Career goals completed</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Recommended Matches</h2>
+                <a href="#" class="section-action">View All</a>
+            </div>
+            <div class="matches-grid">
+                <div class="match-card">
+                    <div class="match-header">
+                        <div class="match-name">Sarah Johnson</div>
+                        <div class="match-score">92% Match</div>
+                    </div>
+                    <div class="match-body">
+                        <div class="match-info">
+                            <span class="match-info-label">Role:</span> Data Scientist at DataWorks NZ
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Expertise:</span> Data Science, Machine Learning, Python
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Region:</span> Wellington
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Mentoring Style:</span> Supportive, Advisory
+                        </div>
+                    </div>
+                    <div class="match-actions">
+                        <button class="btn btn-outline match-btn">View Profile</button>
+                        <button class="btn btn-primary match-btn">Connect</button>
+                    </div>
+                </div>
+                <div class="match-card">
+                    <div class="match-header">
+                        <div class="match-name">Marama Tainui</div>
+                        <div class="match-score">86% Match</div>
+                    </div>
+                    <div class="match-body">
+                        <div class="match-info">
+                            <span class="match-info-label">Role:</span> Senior Developer at TechCore
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Expertise:</span> Frontend, UX/UI, React
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Region:</span> Auckland
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Mentoring Style:</span> Hands-on, Coaching
+                        </div>
+                    </div>
+                    <div class="match-actions">
+                        <button class="btn btn-outline match-btn">View Profile</button>
+                        <button class="btn btn-primary match-btn">Connect</button>
+                    </div>
+                </div>
+                <div class="match-card">
+                    <div class="match-header">
+                        <div class="match-name">Jade Wong</div>
+                        <div class="match-score">78% Match</div>
+                    </div>
+                    <div class="match-body">
+                        <div class="match-info">
+                            <span class="match-info-label">Role:</span> Tech Lead at StartupNZ
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Expertise:</span> Backend, DevOps, Leadership
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Region:</span> Christchurch
+                        </div>
+                        <div class="match-info">
+                            <span class="match-info-label">Mentoring Style:</span> Advisory, Supportive
+                        </div>
+                    </div>
+                    <div class="match-actions">
+                        <button class="btn btn-outline match-btn">View Profile</button>
+                        <button class="btn btn-primary match-btn">Connect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Meetings</h2>
+                <a href="#" class="section-action">Schedule New</a>
+            </div>
+            <div class="meetings-list">
+                <div class="meeting-item">
+                    <div class="meeting-date">
+                        <div class="meeting-month">APR</div>
+                        <div class="meeting-day">12</div>
+                        <div class="meeting-time">10:00 AM</div>
+                    </div>
+                    <div class="meeting-details">
+                        <div class="meeting-title">Career Planning Session</div>
+                        <div class="meeting-with">with Emma Chen</div>
+                        <div class="meeting-location">Google Meet</div>
+                    </div>
+                    <div class="meeting-actions">
+                        <a href="#" class="meeting-action">Reschedule</a>
+                        <a href="#" class="meeting-action">Cancel</a>
+                    </div>
+                </div>
+                <div class="meeting-item">
+                    <div class="meeting-date">
+                        <div class="meeting-month">APR</div>
+                        <div class="meeting-day">18</div>
+                        <div class="meeting-time">2:30 PM</div>
+                    </div>
+                    <div class="meeting-details">
+                        <div class="meeting-title">Code Review Feedback</div>
+                        <div class="meeting-with">with Aroha Kāhu</div>
+                        <div class="meeting-location">Zoom</div>
+                    </div>
+                    <div class="meeting-actions">
+                        <a href="#" class="meeting-action">Reschedule</a>
+                        <a href="#" class="meeting-action">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h2 class="section-title">My Goals</h2>
+                <a href="#" class="section-action">Add New Goal</a>
+            </div>
+            <div class="goals-list">
+                <div class="goal-item">
+                    <div class="goal-status in-progress"></div>
+                    <div class="goal-details">
+                        <div class="goal-title">Complete React Frontend Course</div>
+                        <div class="goal-meta">
+                            <div class="goal-date">Due: May 15, 2025</div>
+                            <div class="goal-category">Skill Development</div>
+                        </div>
+                    </div>
+                    <div class="goal-actions">
+                        <a href="#" class="goal-action">Edit</a>
+                        <a href="#" class="goal-action">Complete</a>
+                    </div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-status in-progress"></div>
+                    <div class="goal-details">
+                        <div class="goal-title">Prepare Portfolio Website</div>
+                        <div class="goal-meta">
+                            <div class="goal-date">Due: June 1, 2025</div>
+                            <div class="goal-category">Career Development</div>
+                        </div>
+                    </div>
+                    <div class="goal-actions">
+                        <a href="#" class="goal-action">Edit</a>
+                        <a href="#" class="goal-action">Complete</a>
+                    </div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-status completed"></div>
+                    <div class="goal-details">
+                        <div class="goal-title">Attend Women in Tech Auckland Meetup</div>
+                        <div class="goal-meta">
+                            <div class="goal-date">Completed: March 20, 2025</div>
+                            <div class="goal-category">Networking</div>
+                        </div>
+                    </div>
+                    <div class="goal-actions">
+                        <a href="#" class="goal-action">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // JavaScript for interaction could be added here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Example: Toggle mobile sidebar
+            // const toggleBtn = document.getElementById('toggle-sidebar');
+            // const sidebar = document.querySelector('.sidebar');
+            // toggleBtn.addEventListener('click', function() {
+            //     sidebar.classList.toggle('expanded');
+            // });
+        });
+    </script>
+</body>
+</html>
