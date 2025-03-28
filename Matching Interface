@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechConnect NZ | Find Your Match</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .main {
+            padding-top: 90px;
+            padding-bottom: 3rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+            max-width: 800px;
+        }
+
+        /* Matching Layout */
+        .matching-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 1.5rem;
+        }
+
+        /* Filters Panel */
+        .filters-panel {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .filters-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .filters-body {
+            padding: 1.5rem;
+        }
+
+        .filter-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--gray-700);
+            font-size: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .filter-group {
+            margin-bottom: 1rem;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+
+        .filter-control {
+            width: 100%;
+            padding: 0.6rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .filter-checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+        }
+
+        .filter-checkbox input {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        .filter-checkbox label {
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .filter-range {
+            margin-top: 0.5rem;
+        }
+
+        .range-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .filter-tag {
+            background-color: var(--gray-200);
+            padding: 0.3rem 0.6rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            color: var(--gray-700);
+        }
+
+        .tag-remove {
+            margin-left: 0.35rem;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        /* Match Results */
+        .matches-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .matches-header {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .matches-found {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .matches-count {
+            color: var(--primary);
+        }
+
+        .matches-sort {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .sort-label {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+        }
+
+        .sort-select {
+            padding: 0.4rem 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .match-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .match-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .match-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .match-header {
+            position: relative;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .match-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--gray-300);
+            overflow: hidden;
+        }
+
+        .match-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .match-info {
+            flex: 1;
+        }
+
+        .match-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+            color: var(--gray-800);
+        }
+
+        .match-title {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-bottom: 0.2rem;
+        }
+
+        .match-location {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            display: flex;
+            align-items: center;
+        }
+
+        .location-icon {
+            margin-right: 0.3rem;
+            font-size: 0.9rem;
+        }
+
+        .match-score {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.5rem;
+            background-color: var(--primary-light);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .match-body {
+            padding: 1.25rem 1.5rem;
+        }
+
+        .match-section {
+            margin-bottom: 1rem;
+        }
+
+        .match-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .match-section-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+
+        .skill-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-badge {
+            background-color: var(--gray-200);
+            padding: 0.3rem 0.6rem;
+            border-radius: 99px;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+        }
+
+        .match-cultural-indicators {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .cultural-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: var(--gray-200);
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            position: relative;
+        }
+
+        .cultural-indicator:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--gray-800);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            margin-bottom: 0.5rem;
+            z-index: 1;
+        }
+
+        .match-footer {
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+
+        .match-action {
+            flex: 1;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .page-item {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            background-color: white;
+            color: var(--gray-700);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .page-item:hover {
+            background-color: var(--gray-200);
+        }
+
+        .page-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .page-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Match Details Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-dialog {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-600);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .matching-container {
+                grid-template-columns: 250px 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .matching-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .match-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="/api/placeholder/40/40" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="matches.html">My Matches</a></li>
+                    <li><a href="meetings.html">Meetings</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="page-header">
+                <h1 class="page-title">Find Your Mentor Match</h1>
+                <p class="page-description">Browse potential mentors based on your interests, goals, and cultural context. Our matching algorithm considers both professional expertise and diversity dimensions.</p>
+            </div>
+
+            <div class="matching-container">
+                <!-- Filters Panel -->
+                <aside class="filters-panel">
+                    <div class="filters-header">
+                        Refine Your Search
+                    </div>
+                    <div class="filters-body">
+                        <div class="filter-section">
+                            <h3 class="filter-title">Expertise</h3>
+                            <div class="filter-group">
+                                <label class="filter-label">Technical Areas</label>
+                                <div class="filter-checkbox-group">
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="frontend" checked>
+                                        <label for="frontend">Frontend Development</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="backend">
+                                        <label for="backend">Backend Development</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="fullstack">
+                                        <label for="fullstack">Full Stack Development</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="data">
+                                        <label for="data">Data Science/Analytics</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="design">
+                                        <label for="design">UX/UI Design</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">Professional Skills</label>
+                                <div class="filter-checkbox-group">
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="leadership" checked>
+                                        <label for="leadership">Leadership</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="career">
+                                        <label for="career">Career Development</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="projectMgmt">
+                                        <label for="projectMgmt">Project Management</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title">Experience Level</h3>
+                            <div class="filter-group">
+                                <label class="filter-label">Years in Tech</label>
+                                <select class="filter-control">
+                                    <option value="any">Any experience level</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5-10" selected>5-10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title">Location</h3>
+                            <div class="filter-group">
+                                <label class="filter-label">Region</label>
+                                <select class="filter-control">
+                                    <option value="any">Any region</option>
+                                    <option value="auckland">Auckland</option>
+                                    <option value="wellington" selected>Wellington</option>
+                                    <option value="christchurch">Christchurch</option>
+                                    <option value="other">Other regions</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title">Cultural Context</h3>
+                            <div class="filter-group">
+                                <label class="filter-label">Cultural Background</label>
+                                <div class="filter-checkbox-group">
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="maori">
+                                        <label for="maori">Māori</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="pasifika">
+                                        <label for="pasifika">Pasifika</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filter-group">
+                                <label class="filter-label">Te Reo Māori Proficiency</label>
+                                <select class="filter-control">
+                                    <option value="any">Any level</option>
+                                    <option value="basic">Basic or better</option>
+                                    <option value="intermediate">Intermediate or better</option>
+                                    <option value="fluent">Fluent/Native speaker</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title">Mentoring Style</h3>
+                            <div class="filter-group">
+                                <div class="filter-checkbox-group">
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="coaching" checked>
+                                        <label for="coaching">Coaching</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="advisory">
+                                        <label for="advisory">Advisory</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="handson">
+                                        <label for="handson">Hands-on</label>
+                                    </div>
+                                    <div class="filter-checkbox">
+                                        <input type="checkbox" id="supportive" checked>
+                                        <label for="supportive">Supportive</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-section">
+                            <h3 class="filter-title">Current Filters</h3>
+                            <div class="filter-tags">
+                                <div class="filter-tag">
+                                    Frontend Development
+                                    <span class="tag-remove">×</span>
+                                </div>
+                                <div class="filter-tag">
+                                    Leadership
+                                    <span class="tag-remove">×</span>
+                                </div>
+                                <div class="filter-tag">
+                                    5-10 years
+                                    <span class="tag-remove">×</span>
+                                </div>
+                                <div class="filter-tag">
+                                    Wellington
+                                    <span class="tag-remove">×</span>
+                                </div>
+                                <div class="filter-tag">
+                                    Coaching
+                                    <span class="tag-remove">×</span>
+                                </div>
+                                <div class="filter-tag">
+                                    Supportive
+                                    <span class="tag-remove">×</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-actions">
+                            <button class="btn btn-outline btn-block">Reset Filters</button>
+                            <button class="btn btn-primary btn-block">Apply Filters</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Match Results -->
+                <div class="matches-panel">
+                    <div class="matches-header">
+                        <div class="matches-found">
+                            <span class="matches-count">12</span> matches found
+                        </div>
+                        <div class="matches-sort">
+                            <span class="sort-label">Sort by:</span>
+                            <select class="sort-select">
+                                <option value="match" selected>Match Score</option>
+                                <option value="experience">Experience</option>
+                                <option value="location">Location</option>
+                                <option value="name">Name</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="match-cards">
+                        <!-- Match Card 1 -->
+                        <div class="match-card">
+                            <div class="match-header">
+                                <div class="match-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Marama Tainui">
+                                </div>
+                                <div class="match-info">
+                                    <h3 class="match-name">Marama Tainui</h3>
+                                    <div class="match-title">Senior Frontend Developer</div>
+                                    <div class="match-location">
+                                        <span class="location-icon">📍</span> Wellington
+                                    </div>
+                                </div>
+                                <div class="match-score">94%</div>
+                            </div>
+                            <div class="match-body">
+                                <div class="match-section">
+                                    <h4 class="match-section-title">Areas of Expertise</h4>
+                                    <div class="skill-badges">
+                                        <span class="skill-badge">Frontend Development</span>
+                                        <span class="skill-badge">UI/UX Design</span>
+                                        <span class="skill-badge">React</span>
+                                    </div>
+                                </div>
+                                <div class="match-section">
+                                    <h4 class="match-section-title">Experience Level</h4>
+                                    <div>8+ years in tech</div>
+                                </div>
+                                <div class="match-section">
+                                    <h4 class="match-section-title">Mentoring Style</h4>
+                                    <div class="skill-badges">
+                                        <span class="skill-badge">Coaching</span>
+                                        <span class="skill-badge">Supportive</span>
+                                    </div>
+                                </div>
+                                <div class="match-section">
+                                    <h4 class="match-section-title">Cultural Context</h4>
+                                    <div class="match-cultural-indicators">
+                                        <div class="cultural-indicator" data-tooltip="Māori">🏮</div>
+                                        <div class="cultural-indicator" data-tooltip="Te Reo Māori: Fluent">📝</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="match-footer">
+                                <button class="btn btn-outline btn-sm match-action" id="view-profile-1">View Profile</button>
+                                <button class="btn btn-primary btn-sm match-action">Request Connection</button>
+                            </div>
+                        </div>
+
+                        <!-- Match Card 2 -->
+                        <div class="match-card">
+                            <div class="match-header">
+                                <div class="match-avatar">
+                                    <img src="/api/placeholder/60/60" alt="Sarah Johnson">
+                                </div>
+                                <div class="match-info">
+                                    <h3 class="match-name">Sarah Johnson</h3>
+                                    <div class="match-title">Tech Lead</div>
+                                    <div class="match-location">
+                                        <span class="location-icon">📍</span> Wellington
+                                    </div>
+                                </div>
+                                <div class="match-score">88%</div>
+                            </div>
+                            <div class="match-body">
+                                <div class="match-section">
+                                    <h4 class="match-section-title">Areas of Expertise</h4>
+                                    <div class="skill-badges">
+                                        <span class="skill-badge">Frontend Development</span>
+                                        <span class="skill-badge">Leadership</span>
+                                        <span class="skill-badge">Angular</span>
+                                    </div>
+                                </div>
+                                <div class="match-section">
+                                    <h4 class="match-section-title">Experience Level</h4>
+                                    <div>10+ years in tech</div>
+                                </div>
+                                <div class="match-section">
+                                    <h4 class="match-section-title">Mentoring Style</h4>
+                                    <div class="skill-badges">
+                                        <span class="skill-badge">Coaching</span>
+                                        <span class="skill-badge">Advisory</span>
+                                    </div>
+                                </div
