@@ -1,0 +1,917 @@
+color: var(--gray-600);
+        }
+
+        .confirmation-container {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background-color: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .confirmation-message {
+            margin-bottom: 2rem;
+        }
+
+        .confirmation-message h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--success);
+        }
+
+        @media (max-width: 768px) {
+            .form-grid, .form-grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .checkbox-card {
+                padding: 0.5rem;
+            }
+
+            .form-step {
+                padding: 1.5rem;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .form-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="/api/placeholder/30/30" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-header">
+            <h1 class="page-title">Join Our Mentorship Community</h1>
+            <p class="page-description">Connect with women and non-binary tech professionals across Aotearoa New Zealand for meaningful mentorship relationships.</p>
+        </div>
+
+        <div class="registration-container">
+            <div class="registration-header">
+                <h2 id="registration-type-title">Mentee Registration</h2>
+            </div>
+
+            <div class="progress-tabs">
+                <div class="progress-tab active" data-step="1">1. Basic Information</div>
+                <div class="progress-tab" data-step="2">2. Professional Details</div>
+                <div class="progress-tab" data-step="3">3. Diversity Information</div>
+                <div class="progress-tab" data-step="4">4. Preferences</div>
+            </div>
+
+            <form id="registration-form">
+                <!-- Step 1: Basic Information -->
+                <div class="form-step active" id="step-1">
+                    <div class="form-section">
+                        <h3 class="form-section-title">Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                                <div class="validation-error" id="firstName-error">Please enter your first name.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                                <div class="validation-error" id="lastName-error">Please enter your last name.</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" required>
+                            <div class="validation-error" id="email-error">Please enter a valid email address.</div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" class="form-control" required>
+                                <div class="form-text">Password must be at least 8 characters and include a mix of letters, numbers, and symbols.</div>
+                                <div class="validation-error" id="password-error">Please enter a valid password.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" class="form-control" required>
+                                <div class="validation-error" id="confirmPassword-error">Passwords do not match.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">Account Type</h3>
+                        <div class="form-group">
+                            <label>I want to register as a:</label>
+                            <div class="form-check-group">
+                                <div class="form-check">
+                                    <input type="radio" name="accountType" id="mentee" value="mentee" class="form-check-input" checked>
+                                    <label for="mentee" class="form-check-label">Mentee (I'm seeking mentorship)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="radio" name="accountType" id="mentor" value="mentor" class="form-check-input">
+                                    <label for="mentor" class="form-check-label">Mentor (I want to offer mentorship)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="btn-cancel">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="btn-step-1-next">Next Step</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Professional Details -->
+                <div class="form-step" id="step-2">
+                    <div class="form-section">
+                        <h3 class="form-section-title">Professional Information</h3>
+                        <div class="form-group">
+                            <label for="jobTitle">Current Job Title</label>
+                            <input type="text" id="jobTitle" class="form-control" required>
+                            <div class="validation-error" id="jobTitle-error">Please enter your job title.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company/Organization</label>
+                            <input type="text" id="company" class="form-control" required>
+                            <div class="validation-error" id="company-error">Please enter your company name.</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="yearsExperience">Years of Experience in Tech</label>
+                            <select id="yearsExperience" class="form-control" required>
+                                <option value="" selected disabled>Select an option</option>
+                                <option value="less-than-1">Less than 1 year</option>
+                                <option value="1-2">1-2 years</option>
+                                <option value="2-3">2-3 years</option>
+                                <option value="3-4">3-4 years</option>
+                                <option value="4-5">4-5 years</option>
+                                <option value="5-8">5-8 years</option>
+                                <option value="8-10">8-10 years</option>
+                                <option value="10+">10+ years</option>
+                            </select>
+                            <div class="validation-error" id="yearsExperience-error">Please select your experience level.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">Areas of Expertise</h3>
+                        <div class="form-group">
+                            <label>Select Your Technical Areas (Choose all that apply)</label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="frontend" value="frontend">
+                                    <label for="frontend">Frontend Development</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="backend" value="backend">
+                                    <label for="backend">Backend Development</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="fullstack" value="fullstack">
+                                    <label for="fullstack">Full Stack Development</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="mobile" value="mobile">
+                                    <label for="mobile">Mobile Development</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="data" value="data">
+                                    <label for="data">Data Science/Analytics</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="design" value="design">
+                                    <label for="design">UX/UI Design</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="devops" value="devops">
+                                    <label for="devops">DevOps/Cloud</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="expertise" id="ai" value="ai">
+                                    <label for="ai">AI/Machine Learning</label>
+                                </div>
+                            </div>
+                            <div class="validation-error" id="expertise-error">Please select at least one area of expertise.</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Select Your Professional Skills (Choose all that apply)</label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="skills" id="leadership" value="leadership">
+                                    <label for="leadership">Leadership & Management</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="skills" id="projectMgmt" value="projectMgmt">
+                                    <label for="projectMgmt">Project Management</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="skills" id="communication" value="communication">
+                                    <label for="communication">Communication</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="skills" id="problemSolving" value="problemSolving">
+                                    <label for="problemSolving">Problem Solving</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="skills" id="teamwork" value="teamwork">
+                                    <label for="teamwork">Teamwork & Collaboration</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="skills" id="innovation" value="innovation">
+                                    <label for="innovation">Innovation & Creativity</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section mentor-only" style="display: none;">
+                        <h3 class="form-section-title">Mentoring Details</h3>
+                        <div class="form-group">
+                            <label>Your Mentoring Style (Select all that apply)</label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentoringStyle" id="coaching" value="coaching">
+                                    <label for="coaching">Coaching (guiding mentees to find their own solutions)</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentoringStyle" id="advisory" value="advisory">
+                                    <label for="advisory">Advisory (providing direct advice and recommendations)</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentoringStyle" id="handson" value="handson">
+                                    <label for="handson">Hands-on (actively engaging in problem-solving with mentees)</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentoringStyle" id="supportive" value="supportive">
+                                    <label for="supportive">Supportive (offering emotional and motivational support)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section mentee-only">
+                        <h3 class="form-section-title">Learning Preferences</h3>
+                        <div class="form-group">
+                            <label>Your Learning Style (Select all that apply)</label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="learningStyle" id="structured" value="structured">
+                                    <label for="structured">Structured (clear guidelines and organised sessions)</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="learningStyle" id="informal" value="informal">
+                                    <label for="informal">Informal (open-ended discussions, flexibility)</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="learningStyle" id="interactive" value="interactive">
+                                    <label for="interactive">Interactive (engaging, collaborative interactions)</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="learningStyle" id="reflective" value="reflective">
+                                    <label for="reflective">Reflective (time to process and reflect)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="btn-step-2-prev">Previous</button>
+                        <button type="button" class="btn btn-primary" id="btn-step-2-next">Next Step</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Diversity Information -->
+                <div class="form-step" id="step-3">
+                    <div class="diversity-disclosure">
+                        <h3>Diversity Information (Optional)</h3>
+                        <p>To help us create an inclusive mentorship program that serves our diverse community, we'd appreciate you sharing some information about yourself. This information is optional and will be used only for community-building and program evaluation purposes.</p>
+                        <p>You can learn more about how we use this information in our <a href="privacy.html">Privacy Policy</a>.</p>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">Identity Information</h3>
+                        <div class="form-group">
+                            <label for="genderIdentity">Gender Identity <span class="optional-label">(Optional)</span></label>
+                            <select id="genderIdentity" class="form-control">
+                                <option value="" selected>Prefer not to say</option>
+                                <option value="woman">Woman</option>
+                                <option value="nonbinary">Non-binary</option>
+                                <option value="genderfluid">Gender fluid</option>
+                                <option value="genderqueer">Genderqueer</option>
+                                <option value="agender">Agender</option>
+                                <option value="trans-woman">Trans woman</option>
+                                <option value="trans-nonbinary">Trans non-binary</option>
+                                <option value="tangata-ira-tane">Tangata ira tāne</option>
+                                <option value="whakawahine">Whakawāhine</option>
+                                <option value="other">Another gender identity not listed</option>
+                            </select>
+                            <div id="genderOtherContainer" style="display: none; margin-top: 0.5rem;">
+                                <input type="text" id="genderIdentityOther" class="form-control" placeholder="Please specify if not listed">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Ethnicity (Select all that apply) <span class="optional-label">(Optional)</span></label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="maori" value="maori">
+                                    <label for="maori">Māori</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="nz-european" value="nz-european">
+                                    <label for="nz-european">New Zealand European/Pākehā</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="samoan" value="samoan">
+                                    <label for="samoan">Samoan</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="cook-island" value="cook-island">
+                                    <label for="cook-island">Cook Islands Māori</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="tongan" value="tongan">
+                                    <label for="tongan">Tongan</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="niuean" value="niuean">
+                                    <label for="niuean">Niuean</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="chinese" value="chinese">
+                                    <label for="chinese">Chinese</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="indian" value="indian">
+                                    <label for="indian">Indian</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="filipino" value="filipino">
+                                    <label for="filipino">Filipino</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="other-pacific" value="other-pacific">
+                                    <label for="other-pacific">Other Pacific Peoples</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="other-asian" value="other-asian">
+                                    <label for="other-asian">Other Asian</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="other" value="other">
+                                    <label for="other">Other Ethnicity</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="ethnicity" id="prefer-not" value="prefer-not">
+                                    <label for="prefer-not">Prefer not to say</label>
+                                </div>
+                            </div>
+                            <div id="ethnicityOtherContainer" style="display: none; margin-top: 0.5rem;">
+                                <input type="text" id="ethnicityOther" class="form-control" placeholder="Please specify if 'Other Ethnicity' selected">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lgbtqiaIdentity">LGBTQIA+ Identity <span class="optional-label">(Optional)</span></label>
+                            <select id="lgbtqiaIdentity" class="form-control">
+                                <option value="" selected>Prefer not to say</option>
+                                <option value="yes-lgbtqia">Yes, I identify as part of the LGBTQIA+ community</option>
+                                <option value="no-lgbtqia">No, I don't identify as part of the LGBTQIA+ community</option>
+                                <option value="questioning">Questioning or unsure</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disabilityStatus">Disability or Access Needs <span class="optional-label">(Optional)</span></label>
+                            <select id="disabilityStatus" class="form-control">
+                                <option value="" selected>Prefer not to say</option>
+                                <option value="no-disability">No disability or access needs</option>
+                                <option value="physical">Physical disability or mobility needs</option>
+                                <option value="deaf">Deaf or hard of hearing</option>
+                                <option value="blind">Blind or low vision</option>
+                                <option value="learning">Learning disability</option>
+                                <option value="neurodiverse">Neurodiverse (ADHD, autism, etc.)</option>
+                                <option value="mental-health">Mental health related</option>
+                                <option value="chronic">Chronic illness or pain</option>
+                                <option value="other-disability">Other disability or access need</option>
+                            </select>
+                            <div id="disabilityOtherContainer" style="display: none; margin-top: 0.5rem;">
+                                <input type="text" id="disabilityOther" class="form-control" placeholder="Please specify if 'Other' selected">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="accommodations">Do you require any accommodations for the mentorship program? <span class="optional-label">(Optional)</span></label>
+                            <textarea id="accommodations" class="form-control" rows="2" placeholder="Let us know if you need any accommodations"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-section-title">Cultural & Regional Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="ageRange">Age Range <span class="optional-label">(Optional)</span></label>
+                                <select id="ageRange" class="form-control">
+                                    <option value="" selected>Prefer not to say</option>
+                                    <option value="18-24">18-24</option>
+                                    <option value="25-34">25-34</option>
+                                    <option value="35-44">35-44</option>
+                                    <option value="45-54">45-54</option>
+                                    <option value="55-64">55-64</option>
+                                    <option value="65+">65+</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="teReoLevel">Te Reo Māori Proficiency <span class="optional-label">(Optional)</span></label>
+                                <select id="teReoLevel" class="form-control">
+                                    <option value="" selected>Prefer not to say</option>
+                                    <option value="none">None</option>
+                                    <option value="basic">Basic phrases and greetings</option>
+                                    <option value="intermediate">Intermediate conversational</option>
+                                    <option value="fluent">Fluent speaker</option>
+                                    <option value="native">Native speaker</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nzRegion">Region in New Zealand</label>
+                            <select id="nzRegion" class="form-control" required>
+                                <option value="" selected disabled>Select region</option>
+                                <option value="northland">Northland</option>
+                                <option value="auckland">Auckland</option>
+                                <option value="waikato">Waikato</option>
+                                <option value="bay-of-plenty">Bay of Plenty</option>
+                                <option value="gisborne">Gisborne</option>
+                                <option value="hawkes-bay">Hawke's Bay</option>
+                                <option value="taranaki">Taranaki</option>
+                                <option value="manawatu-whanganui">Manawatū-Whanganui</option>
+                                <option value="wellington">Wellington</option>
+                                <option value="tasman">Tasman</option>
+                                <option value="nelson">Nelson</option>
+                                <option value="marlborough">Marlborough</option>
+                                <option value="west-coast">West Coast</option>
+                                <option value="canterbury">Canterbury</option>
+                                <option value="otago">Otago</option>
+                                <option value="southland">Southland</option>
+                                <option value="outside-nz">Outside New Zealand</option>
+                            </select>
+                            <div class="validation-error" id="nzRegion-error">Please select your region.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-section mentee-only">
+                        <h3 class="form-section-title">Your Experience as a Woman or Non-Binary Person in Tech</h3>
+                        <div class="form-group">
+                            <label>What specific challenges have you faced? (Select all that apply) <span class="optional-label">(Optional)</span></label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="bias" value="bias">
+                                    <label for="bias">Bias or discrimination</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="representation" value="representation">
+                                    <label for="representation">Lack of representation</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="imposter" value="imposter">
+                                    <label for="imposter">Imposter syndrome</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="harassment" value="harassment">
+                                    <label for="harassment">Harassment or microaggressions</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="pay" value="pay">
+                                    <label for="pay">Pay inequity</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="advancement" value="advancement">
+                                    <label for="advancement">Promotion barriers</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="inclusion" value="inclusion">
+                                    <label for="inclusion">Exclusion from decision-making</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="identity-challenges" id="other-challenge" value="other-challenge">
+                                    <label for="other-challenge">Other</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="techConnection">Current connection to the tech community</label>
+                            <select id="techConnection" class="form-control" required>
+                                <option value="" selected disabled>Select option</option>
+                                <option value="student">Student in tech-related field</option>
+                                <option value="early-career">Early career in tech (0-2 years)</option>
+                                <option value="mid-career">Mid-career in tech (3-7 years)</option>
+                                <option value="returning">Returning to tech after a break</option>
+                                <option value="career-changer">Changing careers into tech</option>
+                                <option value="entrepreneur">Tech entrepreneur</option>
+                                <option value="other-connection">Other connection</option>
+                            </select>
+                            <div id="techConnectionOtherContainer" style="display: none; margin-top: 0.5rem;">
+                                <input type="text" id="techConnectionOther" class="form-control" placeholder="Please specify if 'Other' selected">
+                            </div>
+                            <div class="validation-error" id="techConnection-error">Please select your connection to tech.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-section mentor-only" style="display: none;">
+                        <h3 class="form-section-title">Mentoring Perspectives</h3>
+                        <div class="form-group">
+                            <label>Are you interested in specifically mentoring from any of these perspectives? (Select all that apply)</label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentor-perspective" id="maori-perspective" value="maori">
+                                    <label for="maori-perspective">Māori in tech</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentor-perspective" id="pasifika" value="pasifika">
+                                    <label for="pasifika">Pasifika in tech</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentor-perspective" id="lgbtqia-perspective" value="lgbtqia">
+                                    <label for="lgbtqia-perspective">LGBTQIA+ in tech</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentor-perspective" id="accessibility" value="accessibility">
+                                    <label for="accessibility">Accessibility in tech</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentor-perspective" id="culturally-diverse" value="culturally-diverse">
+                                    <label for="culturally-diverse">Culturally diverse perspectives</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentor-perspective" id="rural" value="rural">
+                                    <label for="rural">Rural tech professionals</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentor-perspective" id="career-transition" value="career<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechConnect NZ | Registration</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .registration-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .registration-header {
+            background-color: var(--gray-100);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .registration-header h2 {
+            font-size: 1.25rem;
+            color: var(--gray-800);
+        }
+
+        .progress-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .progress-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+            color: var(--gray-500);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .progress-tab.completed {
+            color: var(--success);
+        }
+
+        .form-step {
+            display: none;
+            padding: 2rem;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-800);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(186, 104, 200, 0.1);
+            outline: none;
+        }
+
+        .form-text {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .form-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .form-check-group {
+            margin-top: 0.5rem;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-check-input {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        .form-check-label {
+            cursor: pointer;
+        }
+
+        .checkboxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .checkbox-card {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkbox-card:hover {
+            border-color: var(--primary-light);
+            background-color: var(--gray-100);
+        }
+
+        .checkbox-card input {
+            margin-right: 0.75rem;
+        }
+
+        .checkbox-card.checked {
+            border-color: var(--primary);
+            background-color: rgba(156, 39, 176, 0.05);
+        }
+
+        .validation-error {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .optional-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-weight: normal;
+            margin-left: 0.5rem;
+        }
+
+        .diversity-disclosure {
+            background-color: var(--gray-100);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .diversity-disclosure h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-800);
+        }
+
+        .diversity-disclosure p {
+            font-size: 0.9rem;
+            color: var(
