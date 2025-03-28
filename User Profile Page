@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechConnect NZ | User Profile</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .main {
+            padding-top: 90px;
+            padding-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Profile Layout */
+        .profile-container {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 2rem;
+        }
+
+        /* Profile Sidebar */
+        .profile-sidebar {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-header {
+            background: linear-gradient(to right, var(--primary-dark), var(--primary));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background-color: white;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-avatar .edit-avatar {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .profile-avatar .edit-avatar:hover {
+            background-color: var(--primary-light);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-title {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-role {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+
+        .profile-meta {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .meta-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .meta-icon {
+            color: var(--primary);
+            width: 24px;
+            margin-right: 0.75rem;
+            text-align: center;
+        }
+
+        .meta-content {
+            font-size: 0.95rem;
+        }
+
+        .meta-label {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .profile-sidebar-section {
+            padding: 1.5rem;
+        }
+
+        .sidebar-section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .connection-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .connection-item {
+            position: relative;
+        }
+
+        .connection-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--gray-300);
+        }
+
+        .connection-status {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--success);
+            border: 2px solid white;
+        }
+
+        .profile-actions {
+            padding: 1.5rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .profile-action-btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        /* Profile Content */
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .profile-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .section-action {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .section-action:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-content {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .expertise-item {
+            background-color: var(--gray-100);
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .expertise-icon {
+            color: var(--primary);
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0.8rem;
+            width: 2px;
+            background-color: var(--gray-300);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 0;
+            left: -2.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            border: 4px solid white;
+        }
+
+        .timeline-header {
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gray-800);
+        }
+
+        .timeline-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            font-weight: 500;
+            margin-right: 0.75rem;
+            color: var(--primary);
+        }
+
+        .timeline-period {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Education Section */
+        .education-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .education-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .education-header {
+            margin-bottom: 0.5rem;
+        }
+
+        .education-degree {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gray-800);
+        }
+
+        .education-meta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-institution {
+            font-weight: 500;
+            margin-right: 0.75rem;
+            color: var(--primary);
+        }
+
+        .education-years {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* Skills Section */
+        .skills-categories {
+            margin-bottom: 1.5rem;
+        }
+
+        .category-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--gray-700);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-badge {
+            background-color: var(--gray-200);
+            padding: 0.4rem 0.75rem;
+            border-radius: 99px;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        /* Edit Profile Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-dialog {
+            max-width: 600px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-600);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .profile-container {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-marker {
+                left: -2rem;
+                width: 1.25rem;
+                height: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <img src="/api/placeholder/40/40" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="matches.html">My Matches</a></li>
+                    <li><a href="meetings.html">Meetings</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <div class="profile-container">
+                <!-- Profile Sidebar -->
+                <aside class="profile-sidebar">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img src="/api/placeholder/120/120" alt="Marama Tainui">
+                            <div class="edit-avatar">✏️</div>
+                        </div>
+                        <h1 class="profile-name">Marama Tainui</h1>
+                        <div class="profile-title">Senior Frontend Developer</div>
+                        <div class="profile-company">TechNZ Solutions</div>
+                        <div class="profile-role">Mentor</div>
+                    </div>
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <div class="meta-icon">📍</div>
+                            <div class="meta-content">Wellington, New Zealand</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-icon">📧</div>
+                            <div class="meta-content">marama.t@example.com</div>
+                        </div>
+                        <div class="meta-item">
+                            <div class="meta-icon">🔗</div>
+                            <div class="meta-content">linkedin.com/in/maramat</div>
+                        </div>
+                    </div>
+                    <div class="profile-sidebar-section">
+                        <h3 class="sidebar-section-title">Active Mentees</h3>
+                        <div class="connection-list">
+                            <div class="connection-item">
+                                <div class="connection-avatar">
+                                    <img src="/api/placeholder/40/40" alt="Mentee">
+                                    <div class="connection-status"></div>
+                                </div>
+                            </div>
+                            <div class="connection-item">
+                                <div class="connection-avatar">
+                                    <img src="/api/placeholder/40/40" alt="Mentee">
+                                    <div class="connection-status"></div>
+                                </div>
+                            </div>
+                            <div class="connection-item">
+                                <div class="connection-avatar">
+                                    <img src="/api/placeholder/40/40" alt="Mentee">
+                                    <div class="connection-status"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-primary profile-action-btn" id="btn-edit-profile">Edit Profile</button>
+                        <button class="btn btn-outline profile-action-btn">View Public Profile</button>
+                    </div>
+                </aside>
+
+                <!-- Profile Content -->
+                <div class="profile-content">
+                    <!-- About Section -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h2 class="section-title">About Me</h2>
+                            <span class="section-action" id="btn-edit-about">Edit</span>
+                        </div>
+                        <div class="about-content">
+                            <p>Senior Frontend Developer with 8+ years of experience building accessible, responsive web applications for diverse audiences. Passionate about mentoring women and non-binary developers in tech, with a particular focus on supporting Māori and Pasifika professionals.</p>
+                            <p>I bring a strong technical background in modern JavaScript frameworks along with a deep commitment to creating inclusive workplaces where everyone can thrive.</p>
+                        </div>
+                    </section>
+
+                    <!-- Expertise Section -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Areas of Expertise</h2>
+                            <span class="section-action" id="btn-edit-expertise">Edit</span>
+                        </div>
+                        <div class="expertise-grid">
+                            <div class="expertise-item">
+                                <span class="expertise-icon">💻</span>
+                                <span>Frontend Development</span>
+                            </div>
+                            <div class="expertise-item">
+                                <span class="expertise-icon">🎨</span>
+                                <span>UI/UX Design</span>
+                            </div>
+                            <div class="expertise-item">
+                                <span class="expertise-icon">📱</span>
+                                <span>Responsive Design</span>
+                            </div>
+                            <div class="expertise-item">
+                                <span class="expertise-icon">♿</span>
+                                <span>Web Accessibility</span>
+                            </div>
+                            <div class="expertise-item">
+                                <span class="expertise-icon">⚛️</span>
+                                <span>React.js</span>
+                            </div>
+                            <div class="expertise-item">
+                                <span class="expertise-icon">📊</span>
+                                <span>Data Visualization</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Experience Section -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Professional Experience</h2>
+                            <span class="section-action" id="btn-edit-experience">Edit</span>
+                        </div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-header">
+                                    <h3 class="timeline-title">Senior Frontend Developer</h3>
+                                </div>
+                                <div class="timeline-meta">
+                                    <div class="timeline-company">TechNZ Solutions</div>
+                                    <div class="timeline-period">2021 - Present</div>
+                                </div>
+                                <div class="timeline-content">
+                                    <p>Leading the frontend development team in building accessible, responsive web applications. Mentoring junior developers and implementing best practices for code quality and performance.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-header">
+                                    <h3 class="timeline-title">Frontend Developer</h3>
+                                </div>
+                                <div class="timeline-meta">
+                                    <div class="timeline-company">Digital Innovations Ltd</div>
+                                    <div class="timeline-period">2018 - 2021</div>
+                                </div>
+                                <div class="timeline-content">
+                                    <p>Developed and maintained multiple client-facing web applications using React.js and modern frontend technologies. Collaborated closely with designers and backend developers to deliver seamless user experiences.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-header">
+                                    <h3 class="timeline-title">Junior Web Developer</h3>
+                                </div>
+                                <div class="timeline-meta">
+                                    <div class="timeline-company">WebSolutions NZ</div>
+                                    <div class="timeline-period">2015 - 2018</div>
+                                </div>
+                                <div class="timeline-content">
+                                    <p>Started as an intern and progressed to a full-time role. Created responsive websites and web applications for small to medium businesses using HTML, CSS, and JavaScript.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Education Section -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Education</h2>
+                            <span class="section-action" id="btn-edit-education">Edit</span>
+                        </div>
+                        <div class="education-list">
+                            <div class="education-item">
+                                <div class="education-header">
+                                    <h3 class="education-degree">Bachelor of Science in Computer Science</h3>
+                                </div>
+                                <div class="education-meta">
+                                    <div class="education-institution">Victoria University of Wellington</div>
+                                    <div class="education-years">2012 - 2015</div>
+                                </div>
+                                <div class="education-content">
+                                    <p>Focused on web development, user experience design, and software engineering principles.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Skills Section -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Skills</h2>
+                            <span class="section-action" id="btn-edit-skills">Edit</span>
+                        </div>
+                        <div class="skills-categories">
+                            <div class="category-title">Technical Skills</div>
+                            <div class="skills-list">
+                                <span class="skill-badge">HTML5</span>
+                                <span class="skill-badge">CSS3/SASS</span>
+                                <span class="skill-badge">JavaScript (ES6+)</span>
+                                <span class="skill-badge">TypeScript</span>
+                                <span class="skill-badge">React</span>
+                                <span class="skill-badge">Vue.js</span>
+                                <span class="skill-badge">Node.js</span>
+                                <span class="skill-badge">Redux</span>
+                                <span class="skill-badge">GraphQL</span>
+                                <span class="skill-badge">Webpack</span>
+                                <span class="skill-badge">Jest</span>
+                                <span class="skill-badge">Git</span>
+                            </div>
+                        </div>
+                        <div class="skills-categories">
+                            <div class="category-title">Professional Skills</div>
+                            <div class="skills-list">
+                                <span class="skill-badge">Team Leadership</span>
+                                <span class="skill-badge">Mentoring</span>
+                                <span class="skill-badge">Agile/Scrum</span>
+                                <span class="skill-badge">Technical Documentation</span>
+                                <span class="skill-badge">Code Reviews</span>
+                                <span class="skill-badge">Public Speaking</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mentoring Section -->
+                    <section class="profile-section">
+                        <div class="section-header">
+                            <h2 class="section-title">Mentoring</h2>
+                            <span class="section-action" id="btn-edit-mentoring">Edit</span>
+                        </div>
+                        <div class="mentoring-details">
+                            <div class="form-group">
+                                <label>Mentoring Style</label>
+                                <div class="skills-list">
+                                    <span class="skill-badge">Coaching</span>
+                                    <span class="skill-badge">Supportive</span>
+                                    <span class="skill-badge">Hands-on</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mentoring Philosophy</label>
+                                <p>"I believe in empowering mentees to find their own solutions while providing a supportive space for learning and growth. My approach is to share practical insights from my experience while encouraging mentees to develop their unique strengths and perspectives."</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Mentoring Perspectives</label>
+                                <div class="skills-list">
+                                    <span class="skill-badge">Māori in tech</span>
+                                    <span class="skill-badge">Women in tech</span>
+                                    <span class="skill-badge">Career transitions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">Edit Profile</h3>
+                    <button class="modal-close" id="btn-close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-profile-form">
+                        <div class="form-group">
+                            <label for="edit-name">Full Name</label>
+                            <input type="text" id="edit-name" class="form-control" value="Marama Tainui">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-title">Job Title</label>
+                            <input type="text" id="edit-title" class="form-control" value="Senior Frontend Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-company">Company</label>
+                            <input type="text" id="edit-company" class="form-control" value="TechNZ Solutions">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-location">Location</label>
+                            <input type="text" id="edit-location" class="form-control" value="Wellington, New Zealand">
+                        </div>
