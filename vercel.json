@@ -1,0 +1,6 @@
+{
+  "buildCommand": false,
+  "outputDirectory": ".",
+  "devCommand": false,
+  "installCommand": false
+}
