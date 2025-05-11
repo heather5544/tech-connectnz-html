@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code of Conduct | TechConnect NZ</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+        }
+
+        .content-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        h3 {
+            color: var(--gray-700);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: var(--gray-100);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .commitment-box {
+            background-color: rgba(0, 188, 212, 0.1);
+            border: 1px solid var(--secondary-light);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .danger-box {
+            background-color: rgba(229, 62, 62, 0.05);
+            border-left: 4px solid var(--error);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .date-updated {
+            text-align: right;
+            color: var(--gray-500);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .toc {
+            background-color: var(--gray-100);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .toc-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            font-size: 1.25rem;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--primary-light);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 1.5rem;
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="/api/placeholder/30/30" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-header">
+            <h1 class="page-title">Code of Conduct</h1>
+            <p class="page-description">Our commitment to creating a respectful, inclusive, and supportive community for women and non-binary individuals in tech.</p>
+        </div>
+
+        <div class="content-container">
+            <div class="date-updated">Last Updated: May 10, 2025</div>
+
+            <div class="toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#purpose">1. Purpose and Scope</a></li>
+                    <li><a href="#values">2. Core Values</a></li>
+                    <li><a href="#expected">3. Expected Behavior</a></li>
+                    <li><a href="#unacceptable">4. Unacceptable Behavior</a></li>
+                    <li><a href="#cultural">5. Cultural Considerations</a></li>
+                    <li><a href="#reporting">6. Reporting Guidelines</a></li>
+                    <li><a href="#consequences">7. Consequences of Violations</a></li>
+                    <li><a href="#safety">8. Safety and Privacy</a></li>
+                    <li><a href="#implementation">9. Implementation and Review</a></li>
+                    <li><a href="#contact">10. Contact Information</a></li>
+                </ul>
+            </div>
+
+            <div class="commitment-box">
+                <p><strong>Our Commitment:</strong> TechConnect NZ is dedicated to providing a harassment-free, supportive environment for all participants, regardless of gender identity, sexual orientation, disability, physical appearance, body size, race, ethnicity, or religion. We value diversity, respect, and inclusion in all interactions within our community.</p>
+            </div>
+
+            <section class="section" id="purpose">
+                <h2>1. Purpose and Scope</h2>
+                <p>This Code of Conduct outlines our expectations for all participants in the TechConnect NZ community, including mentors, mentees, staff, and any other individuals involved in our platform or associated events.</p>
+                <p>It applies to all spaces managed by TechConnect NZ, including but not limited to:</p>
+                <ul>
+                    <li>Our online platform and all interactions within it</li>
+                    <li>Direct messages and communications between participants</li>
+                    <li>Mentorship meetings and sessions (virtual or in-person)</li>
+                    <li>Community events, workshops, and gatherings</li>
+                    <li>Social media channels and public forums managed by TechConnect NZ</li>
+                </ul>
+                <p>By participating in our community, you agree to abide by this Code of Conduct and cooperate with the organizers and administrators who enforce it.</p>
+            </section>
+
+            <section class="section" id="values">
+                <h2>2. Core Values</h2>
+                <p>Our community is built upon the following core values:</p>
+                
+                <h3>Inclusivity and Belonging</h3>
+                <p>We strive to create a space where women and non-binary individuals from all backgrounds feel welcome, valued, and empowered. We acknowledge the importance of diversity in tech and work to actively include underrepresented perspectives.</p>
+                
+                <h3>Respect and Dignity</h3>
+                <p>We treat all individuals with respect and dignity, honoring differences in opinion, background, and experience. We value active listening and thoughtful communication.</p>
+                
+                <h3>Manaakitanga</h3>
+                <p>We embrace the Māori concept of manaakitanga, showing kindness, respect, and care toward others. We place importance on hospitality, generosity, and mutual respect in all community interactions.</p>
+                
+                <h3>Whanaungatanga</h3>
+                <p>We foster relationship building and a sense of connectedness among our community members, recognizing that meaningful connections form the foundation of effective mentorship.</p>
+                
+                <h3>Growth and Learning</h3>
+                <p>We create space for ongoing learning, skill development, and personal growth. We recognize that everyone has something to teach and something to learn.</p>
+                
+                <h3>Confidentiality and Trust</h3>
+                <p>We respect privacy and maintain appropriate confidentiality in our discussions and relationships, creating a foundation of trust within our community.</p>
+            </section>
+
+            <section class="section" id="expected">
+                <h2>3. Expected Behavior</h2>
+                <p>All participants are expected to:</p>
+                <ul>
+                    <li><strong>Be respectful and inclusive</strong> in your language and actions</li>
+                    <li><strong>Practice active listening</strong> and seek to understand before responding</li>
+                    <li><strong>Be open to learning</strong> about different perspectives and experiences</li>
+                    <li><strong>Honor commitments</strong> made to mentorship partners and the community</li>
+                    <li><strong>Communicate clearly and professionally</strong>, especially when providing feedback</li>
+                    <li><strong>Respect boundaries</strong> established by others</li>
+                    <li><strong>Maintain confidentiality</strong> when information is shared in confidence</li>
+                    <li><strong>Acknowledge and correct mistakes</strong> when they occur</li>
+                    <li><strong>Focus on collaboration</strong> rather than competition</li>
+                    <li><strong>Welcome newcomers</strong> and help them feel included</li>
+                    <li><strong>Speak up</strong> when you witness behavior that contradicts our community values</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p><strong>For Mentors:</strong> Remember the influence you hold as a mentor. Practice active listening, provide constructive feedback, respect your mentee's autonomy, and be mindful of potential power dynamics in the relationship.</p>
+                </div>
+                
+                <div class="highlight-box">
+                    <p><strong>For Mentees:</strong> Approach mentorship with openness to learning, respect your mentor's time and expertise, communicate your needs clearly, and provide feedback about what is and isn't working in the mentorship relationship.</p>
+                </div>
+            </section>
+
+            <section class="section" id="unacceptable">
+                <h2>4. Unacceptable Behavior</h2>
+                <p>The following behaviors are considered unacceptable within our community:</p>
+                
+                <h3>Harassment and Discrimination</h3>
+                <ul>
+                    <li>Discriminatory jokes, language, or behavior</li>
+                    <li>Offensive comments related to gender identity, sexual orientation, disability, physical appearance, race, ethnicity, or religion</li>
+                    <li>Unwelcome sexual attention, comments, or imagery</li>
+                    <li>Deliberate misgendering or using rejected names or pronouns</li>
+                    <li>Persistent unwanted contact or attention after requests to cease</li>
+                </ul>
+                
+                <h3>Disruptive or Harmful Behavior</h3>
+                <ul>
+                    <li>Intimidation, bullying, or threatening behavior</li>
+                    <li>Violent or aggressive language or actions</li>
+                    <li>Sharing others' personal or private information without consent (doxxing)</li>
+                    <li>Posting or displaying sexually explicit or violent material</li>
+                    <li>Repeatedly disruptive behavior in community spaces</li>
+                    <li>Any behavior that would reasonably make someone feel unsafe, uncomfortable, or unwelcome</li>
+                </ul>
+                
+                <h3>Professional Integrity Violations</h3>
+                <ul>
+                    <li>Soliciting or offering services that violate our Terms of Service</li>
+                    <li>Using the platform primarily for sales, recruitment, or other commercial purposes without permission</li>
+                    <li>Misrepresenting qualifications, experience, or identity</li>
+                    <li>Breaching confidentiality agreements</li>
+                    <li>Engaging in conflicts of interest without disclosure</li>
+                </ul>
+                
+                <div class="danger-box">
+                    <p><strong>Zero Tolerance:</strong> TechConnect NZ has zero tolerance for any form of harassment, discrimination, or abusive behavior. Violations of this policy may result in immediate removal from the platform.</p>
+                </div>
+            </section>
+
+            <section class="section" id="cultural">
+                <h2>5. Cultural Considerations</h2>
+                <p>TechConnect NZ is committed to honoring the bicultural foundation of Aotearoa New Zealand and creating a platform that respects and incorporates Te Ao Māori (the Māori worldview) alongside other cultural perspectives.</p>
+                
+                <h3>Te Tiriti o Waitangi Principles</h3>
+                <p>We acknowledge the importance of partnership, participation, and protection as outlined in Te Tiriti o Waitangi (The Treaty of Waitangi) and strive to incorporate these principles into our community governance.</p>
+                
+                <h3>Cultural Respect</h3>
+                <p>We expect all community members to:</p>
+                <ul>
+                    <li>Respect cultural protocols and practices</li>
+                    <li>Acknowledge and appreciate cultural differences</li>
+                    <li>Avoid cultural appropriation</li>
+                    <li>Be open to learning about different cultural perspectives</li>
+                    <li>Recognize that cultural norms around communication and mentorship may vary</li>
+                </ul>
+                
+                <h3>Te Reo Māori</h3>
+                <p>We encourage the use of Te Reo Māori alongside English in our community spaces, while ensuring inclusion for those who may not speak the language.</p>
+            </section>
+
+            <section class="section" id="reporting">
+                <h2>6. Reporting Guidelines</h2>
+                <p>If you experience or witness behavior that violates this Code of Conduct, we encourage you to report it. Your safety and well-being are our priority.</p>
+                
+                <h3>How to Report</h3>
+                <p>You can report Code of Conduct violations through the following channels:</p>
+                <ul>
+                    <li><strong>Platform reporting feature:</strong> Use the "Report a Concern" button available on all profile pages and in messaging interfaces</li>
+                    <li><strong>Email:</strong> Send a confidential email to <a href="mailto:conduct@techconnect.nz">conduct@techconnect.nz</a></li>
+                    <li><strong>Contact form:</strong> Fill out the secure form on our <a href="contact.html">Contact page</a></li>
+                </ul>
+                
+                <h3>What to Include in a Report</h3>
+                <p>When making a report, please include:</p>
+                <ul>
+                    <li>Your contact information (if you're comfortable providing it)</li>
+                    <li>Names of the individuals involved</li>
+                    <li>Description of the incident or behavior</li>
+                    <li>Date, time, and location/context of the incident</li>
+                    <li>Any relevant screenshots, messages, or other documentation</li>
+                    <li>Names of any witnesses (if applicable)</li>
+                    <li>Any additional information that may be helpful</li>
+                </ul>
+                
+                <h3>What Happens After You Report</h3>
+                <p>After receiving a report, our response team will:</p>
+                <ol>
+                    <li>Acknowledge receipt of your report within 24 hours</li>
+                    <li>Review the information provided</li>
+                    <li>Conduct a fair and thorough investigation</li>
+                    <li>Maintain confidentiality to the extent possible</li>
+                    <li>Take appropriate action based on the findings</li>
+                    <li>Provide you with an update on the resolution (where appropriate)</li>
+                </ol>
+                
+                <div class="highlight-box">
+                    <p><strong>Confidentiality:</strong> We will respect your privacy and maintain confidentiality throughout the reporting process. Anonymous reports will be accepted, though they may limit our ability to investigate and respond.</p>
+                </div>
+            </section>
+
+            <section class="section" id="consequences">
+                <h2>7. Consequences of Violations</h2>
+                <p>TechConnect NZ takes all reports of Code of Conduct violations seriously. Consequences for violations will be determined based on the severity, impact, and history of the behavior.</p>
+                
+                <h3>Potential Actions</h3>
+                <p>Actions may include, but are not limited to:</p>
+                <ul>
+                    <li><strong>Verbal or written warning</strong> with clarification of expected behavior</li>
+                    <li><strong>Temporary restriction</strong> from specific features or areas of the platform</li>
+                    <li><strong>Temporary suspension</strong> from the platform for a defined period</li>
+                    <li><strong>Permanent removal</strong> from the platform</li>
+                    <li><strong>Exclusion</strong> from future TechConnect NZ events</li>
+                    <li><strong>Other actions</strong> as deemed appropriate to the situation</li>
+                </ul>
+                
+                <h3>Enforcement Principles</h3>
+                <p>When enforcing this Code of Conduct, we will:</p>
+                <ul>
+                    <li>Conduct fair and impartial investigations</li>
+                    <li>Consider the impact of the behavior on affected individuals and the community</li>
+                    <li>Focus on education and restoration where appropriate</li>
+                    <li>Take more severe action for repeated violations or particularly harmful behavior</li>
+                    <li>Protect the identities of those who report violations when possible</li>
+                </ul>
+                
+                <p>TechConnect NZ reserves the right to remove any individual from the platform for any reason if their presence or behavior is deemed detrimental to the community.</p>
+            </section>
+
+            <section class="section" id="safety">
+                <h2>8. Safety and Privacy</h2>
+                <p>Ensuring the safety and privacy of our community members is paramount.</p>
+                
+                <h3>Personal Safety</h3>
+                <p>We recommend the following safety practices:</p>
+                <ul>
+                    <li>For initial meetings, use our platform's video conferencing tools or meet in public places</li>
+                    <li>Be cautious about sharing personal information, especially in early interactions</li>
+                    <li>Trust your instincts – if something feels wrong, it probably is</li>
+                    <li>Set clear boundaries regarding communication methods and frequency</li>
+                    <li>Report any concerning behavior promptly</li>
+                </ul>
+                
+                <h3>Privacy Considerations</h3>
+                <p>To protect privacy:</p>
+                <ul>
+                    <li>Do not share others' personal information without explicit permission</li>
+                    <li>Respect confidentiality in mentorship conversations</li>
+                    <li>Do not record meetings without consent from all participants</li>
+                    <li>Be mindful of what personal information you share on your profile</li>
+                    <li>Review our <a href="privacy.html">Privacy Policy</a> for details on how we handle your data</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p><strong>Safety First:</strong> If you ever feel unsafe or uncomfortable in a mentorship relationship, prioritize your wellbeing. You can end any conversation or relationship at any time without explanation.</p>
+                </div>
+            </section>
+
+            <section class="section" id="implementation">
+                <h2>9. Implementation and Review</h2>
+                <p>This Code of Conduct is not just a document; it's a commitment to creating and maintaining a positive community culture.</p>
+                
+                <h3>Implementation</h3>
+                <p>We implement this Code of Conduct through:</p>
+                <ul>
+                    <li>Clear communication of expectations during onboarding</li>
+                    <li>Regular reminders and educational resources</li>
+                    <li>Accessible reporting mechanisms</li>
+                    <li>Trained moderators and administrators</li>
+                    <li>Consistent enforcement of standards</li>
+                </ul>
+                
+                <h3>Review Process</h3>
+                <p>This Code of Conduct will be reviewed annually to ensure it remains effective and relevant. We welcome community feedback on ways to improve our policies and practices.</p>
+            </section>
+
+            <section class="section" id="contact">
+                <h2>10. Contact Information</h2>
+                <p>If you have questions about this Code of Conduct or need to report a violation, please contact us through one of the following channels:</p>
+                <ul>
+                    <li>Email: <a href="mailto:conduct@techconnect.nz">conduct@techconnect.nz</a></li>
+                    <li>Contact form: Available on our <a href="contact.html">Contact page</a></li>
+                    <li>For urgent matters: Call our support line at +64 4 123 4567 (Monday-Friday, 9am-5pm NZST)</li>
+                </ul>
+                <p>For non-urgent questions or feedback about this Code of Conduct, please email <a href="mailto:feedback@techconnect.nz">feedback@techconnect.nz</a>.</p>
+            </section>
+
+            <div class="commitment-box">
+                <p><strong>By participating in the TechConnect NZ community, you agree to uphold this Code of Conduct and contribute to creating a positive, inclusive, and supportive environment for all.</strong></p>
+            </div>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top">↑</a>
+
+    <footer>
+        &copy; 2025 TechConnect NZ. All rights reserved.
+    </footer>
+
+    <script>
+        // Back to top button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            var backToTopButton = document.querySelector('.back-to-top');
+            
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'flex';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            // Initially hide the button
+            backToTopButton.style.display = 'none';
+            
+            // Smooth scroll to top
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
