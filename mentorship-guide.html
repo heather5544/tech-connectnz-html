@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentorship Guide | TechConnect NZ</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+        }
+
+        .content-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        h3 {
+            color: var(--gray-700);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        h4 {
+            color: var(--primary-dark);
+            margin: 1.25rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box {
+            background-color: rgba(0, 188, 212, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .tip-box-title {
+            font-weight: 600;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .tip-box-title:before {
+            content: "💡";
+            margin-right: 0.5rem;
+        }
+
+        .mentor-tip {
+            background-color: rgba(156, 39, 176, 0.08);
+            border-left: 4px solid var(--primary);
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .mentor-tip-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .mentor-tip-title:before {
+            content: "👨‍🏫";
+            margin-right: 0.5rem;
+        }
+
+        .mentee-tip {
+            background-color: rgba(255, 213, 79, 0.15);
+            border-left: 4px solid var(--accent);
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .mentee-tip-title {
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .mentee-tip-title:before {
+            content: "🧠";
+            margin-right: 0.5rem;
+        }
+
+        .warning-box {
+            background-color: rgba(237, 137, 54, 0.1);
+            border-left: 4px solid var(--warning);
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning-box-title {
+            font-weight: 600;
+            color: var(--warning);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .warning-box-title:before {
+            content: "⚠️";
+            margin-right: 0.5rem;
+        }
+
+        .step-box {
+            background-color: white;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .step-number {
+            background-color: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .resource-card {
+            background-color: white;
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            background-color: var(--primary);
+            color: white;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+        }
+
+        .table-container {
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+
+        th {
+            background-color: var(--gray-100);
+            font-weight: 600;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--gray-50);
+        }
+
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background-color: var(--primary-light);
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .templates-section {
+            margin-top: 2rem;
+        }
+
+        .template {
+            background-color: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .template-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .template-content {
+            border-left: 4px solid var(--primary-light);
+            padding-left: 1rem;
+        }
+
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .download-link:before {
+            content: "📄";
+            margin-right: 0.5rem;
+        }
+
+        .download-link:hover {
+            text-decoration: underline;
+        }
+
+        .toc {
+            background-color: var(--gray-100);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .toc-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        .toc-list ul {
+            list-style-type: none;
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 1.5rem;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="/api/placeholder/30/30" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-header">
+            <h1 class="page-title">Mentorship Guide</h1>
+            <p class="page-description">A comprehensive guide for creating successful mentorship relationships on the TechConnect NZ platform.</p>
+        </div>
+
+        <div class="content-container">
+            <div class="toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#introduction">1. Introduction to TechConnect Mentorship</a></li>
+                    <li><a href="#getting-started">2. Getting Started</a>
+                        <ul>
+                            <li><a href="#platform-basics">Platform Basics</a></li>
+                            <li><a href="#finding-matches">Finding Your Match</a></li>
+                            <li><a href="#first-contact">Making First Contact</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#structuring">3. Structuring the Mentorship</a>
+                        <ul>
+                            <li><a href="#first-meeting">The First Meeting</a></li>
+                            <li><a href="#mentorship-agreement">Creating a Mentorship Agreement</a></li>
+                            <li><a href="#goal-setting">Setting Goals and Expectations</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#effective-sessions">4. Conducting Effective Sessions</a>
+                        <ul>
+                            <li><a href="#preparation">Preparation</a></li>
+                            <li><a href="#during-meetings">During Meetings</a></li>
+                            <li><a href="#follow-up">Follow-up</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#challenges">5. Navigating Challenges</a>
+                        <ul>
+                            <li><a href="#common-challenges">Common Challenges</a></li>
+                            <li><a href="#ending-mentorship">Ending a Mentorship</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#cultural-considerations">6. Cultural Considerations</a></li>
+                    <li><a href="#resources">7. Additional Resources</a></li>
+                    <li><a href="#templates">8. Templates and Tools</a></li>
+                </ul>
+            </div>
+
+            <section class="section" id="introduction">
+                <h2>1. Introduction to TechConnect Mentorship</h2>
+                <p>Welcome to the TechConnect NZ Mentorship Guide. This resource is designed to help both mentors and mentees build successful, rewarding mentorship relationships that foster professional growth and connection within Aotearoa New Zealand's tech community.</p>
+                
+                <h3>About TechConnect NZ</h3>
+                <p>TechConnect NZ connects women and non-binary individuals in the tech industry through mentorship relationships that celebrate diversity and empower career development. Our platform is specifically designed to consider both professional expertise and cultural context when matching mentors and mentees.</p>
+                
+                <h3>The Value of Mentorship</h3>
+                <p>Effective mentorship can be transformative for both parties:</p>
+                <ul>
+                    <li><strong>For mentees:</strong> Guidance, support, industry insights, skill development, networking opportunities, and increased confidence</li>
+                    <li><strong>For mentors:</strong> Leadership development, fresh perspectives, reinforcement of knowledge, satisfaction from helping others, and community connection</li>
+                </ul>
+                
+                <h3>Our Mentorship Philosophy</h3>
+                <p>At TechConnect NZ, we believe effective mentorship is:</p>
+                <ul>
+                    <li><strong>Reciprocal:</strong> Both parties should benefit from the relationship</li>
+                    <li><strong>Intentional:</strong> Built on clear goals and expectations</li>
+                    <li><strong>Inclusive:</strong> Respectful of diverse backgrounds, experiences, and perspectives</li>
+                    <li><strong>Growth-oriented:</strong> Focused on learning and development</li>
+                    <li><strong>Bounded:</strong> Structured with clear timeframes and commitments</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <div class="tip-box-title">Mentorship Basics</div>
+                    <p>We recommend mentorship relationships include at least 3 sessions, typically meeting monthly. However, the frequency and duration should be agreed upon by both parties based on their needs and availability.</p>
+                </div>
+            </section>
+
+            <section class="section" id="getting-started">
+                <h2>2. Getting Started</h2>
+                
+                <div id="platform-basics">
+                    <h3>Platform Basics</h3>
+                    <p>TechConnect NZ makes it easy to connect with potential mentors or mentees. Here's how our platform works:</p>
+                    
+                    <div class="step-box">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Create Your Profile</div>
+                        <p>Your profile is your introduction to potential mentors or mentees. Be sure to complete it thoroughly, including:</p>
+                        <ul>
+                            <li>Professional background and expertise</li>
+                            <li>Goals and interests</li>
+                            <li>Optional diversity information (which helps with matching)</li>
+                            <li>Preferences for mentorship focus areas</li>
+                        </ul>
+                        <p>The more complete your profile, the better matches we can suggest.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Use the Matching Interface</div>
+                        <p>Our algorithm suggests potential matches based on:</p>
+                        <ul>
+                            <li><strong>Professional compatibility (70%):</strong> Skills, experience, goals, and industry</li>
+                            <li><strong>Diversity factors (30%):</strong> Cultural context, regional connections, and other identity factors you've chosen to share</li>
+                        </ul>
+                        <p>Navigate to the "Matches" tab to view and explore your suggested connections.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-number">3</div>
+                        <div class="step-title">Communicate Through the Platform</div>
+                        <p>All initial communications happen through our secure messaging system. This helps both parties:</p>
+                        <ul>
+                            <li>Maintain privacy until they're comfortable sharing contact information</li>
+                            <li>Keep a record of conversations</li>
+                            <li>Access support if needed</li>
+                        </ul>
+                        <p>Once a mentorship is established, you can choose to communicate through other channels if preferred.</p>
+                    </div>
+                    
+                    <div class="step-box">
+                        <div class="step-number">4</div>
+                        <div class="step-title">Schedule and Track Meetings</div>
+                        <p>Use our built-in scheduling tool to:</p>
+                        <ul>
+                            <li>Propose meeting times</li>
+                            <li>Send calendar invitations</li>
+                            <li>Track your mentorship journey</li>
+                            <li>Make notes about discussion topics and action items</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div id="finding-matches">
+                    <h3>Finding Your Match</h3>
+                    <p>Finding the right mentorship match is key to a successful experience. Here's how to make the most of our matching system:</p>
+                    
+                    <h4>For Mentees:</h4>
+                    <ul>
+                        <li><strong>Be specific about your goals:</strong> What skills do you want to develop? What challenges are you facing? What career stage are you in?</li>
+                        <li><strong>Consider what you want in a mentor:</strong> Experience level, specific expertise, communication style, cultural background</li>
+                        <li><strong>Review profiles thoroughly:</strong> Look beyond job titles to understand mentors' experiences and approaches</li>
+                        <li><strong>Don't rush the process:</strong> Take time to consider multiple potential mentors before sending connection requests</li>
+                    </ul>
+                    
+                    <div class="mentee-tip">
+                        <div class="mentee-tip-title">Mentee Tip</div>
+                        <p>When reaching out to potential mentors, personalize your message by mentioning specific aspects of their profile that resonated with you and explaining why you believe they would be a good mentor for you.</p>
+                    </div>
+                    
+                    <h4>For Mentors:</h4>
+                    <ul>
+                        <li><strong>Clarify what you can offer:</strong> Be specific about your areas of expertise, experience, and mentoring style</li>
+                        <li><strong>Consider your capacity:</strong> Be realistic about how many mentees you can effectively support</li>
+                        <li><strong>Look for alignment:</strong> Consider whether the mentee's goals match areas where you can provide value</li>
+                        <li><strong>Be open to diversity:</strong> Consider mentees from different backgrounds who might bring fresh perspectives</li>
+                    </ul>
+                    
+                    <div class="mentor-tip">
+                        <div class="mentor-tip-title">Mentor Tip</div>
+                        <p>Before accepting a mentorship request, consider scheduling a brief 15-30 minute initial conversation to gauge compatibility and ensure you can meet the mentee's expectations.</p>
+                    </div>
+                </div>
+                
+                <div id="first-contact">
+                    <h3>Making First Contact</h3>
+                    <p>The initial communication sets the tone for your mentorship relationship. Here are some guidelines for making a positive first impression:</p>
+                    
+                    <h4>For Mentees Initiating Contact:</h4>
+                    <ul>
+                        <li>Introduce yourself concisely</li>
+                        <li>Explain why you're interested in connecting with this specific mentor</li>
+                        <li>Mention 1-2 goals you hope to work on</li>
+                        <li>Be respectful of their time</li>
+                        <li>Ask if they'd be open to an initial conversation</li>
+                    </ul>
+                    
+                    <div class="template">
+                        <div class="template-title">Sample Mentee Introduction Message</div>
+                        <div class="template-content">
+                            <p>Kia ora [Mentor's Name],</p>
+                            <p>I'm [Your Name], a [Your Role] at [Your Company/Organization]. I've been working in [industry/field] for [time period] and am looking to develop my skills in [specific area].</p>
+                            <p>I was impressed by your experience with [specific aspect from their profile], and I believe I could learn a lot from your journey in [relevant area]. I'm particularly hoping to improve my [specific skill/knowledge area] and would value your guidance.</p>
+                            <p>Would you be open to an initial 30-minute conversation to see if we might be a good mentorship match? I'm generally available [mention a few time slots] but can work around your schedule.</p>
+                            <p>Thank you for considering my request.</p>
+                            <p>Ngā mihi,<br>[Your Name]</p>
+                        </div>
+                    </div>
+                    
+                    <h4>For Mentors Responding:</h4>
+                    <ul>
+                        <li>Respond promptly (within 3-5 days)</li>
+                        <li>Express appreciation for their interest</li>
+                        <li>Be honest about your capacity</li>
+                        <li>If interested, suggest next steps</li>
+                        <li>If declining, do so respectfully and consider suggesting alternative resources</li>
+                    </ul>
+                    
+                    <div class="template">
+                        <div class="template-title">Sample Mentor Response Message</div>
+                        <div class="template-content">
+                            <p>Kia ora [Mentee's Name],</p>
+                            <p>Thank you for reaching out! I appreciate your interest in connecting and learning together.</p>
+                            <p>Your background in [mention something from their profile] sounds interesting, and I'd be happy to explore how I might support your goals around [specific area they mentioned].</p>
+                            <p>Let's schedule an initial conversation to discuss our potential mentorship. I'm available [suggest 2-3 specific times] in the coming week. Please let me know which time works best for you, or suggest alternatives if none of these options suit.</p>
+                            <p>I look forward to learning more about your aspirations and how I might help.</p>
+                            <p>Ngā mihi,<br>[Your Name]</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="structuring">
+                <h2>3. Structuring the Mentorship</h2>
+                
+                <div id="first-meeting">
+                    <h3>The First Meeting</h3>
+                    <p>The initial meeting sets the foundation for your mentorship relationship. It's primarily about getting to know each other and determining if there's a good fit.</p>
+                    
+                    <h4>Suggested Agenda for First Meeting:</h4>
+                    <ol>
+                        <li><strong>Introductions (15 min):</strong> Share your backgrounds, experiences, and what brought you to TechConnect</li>
+                        <li><strong>Discuss expectations (15 min):</strong> What does each person hope to gain from the mentorship?</li>
+                        <li><strong>Explore potential focus areas (15 min):</strong> What specific topics, skills, or challenges might you work on together?</li>
+                        <li><strong>Discuss logistics (10 min):</strong> Meeting frequency, preferred communication methods, potential duration of the mentorship</li>
+                        <li><strong>Next steps (5 min):</strong> Decide if you'd like to proceed and schedule your next meeting</li>
+                    </ol>
+                    
+                    <div class="tip-box">
+                        <div class="tip-box-title">First Meeting Format</div>
+                        <p>We recommend holding your first meeting via video call to establish a personal connection. If both parties are in the same region and comfortable with in-person meetings, a coffee shop or other public space can be a good neutral location.</p>
+                    </div>
+                </div>
+                
+                <div id="mentorship-agreement">
+                    <h3>Creating a Mentorship Agreement</h3>
+                    <p>A mentorship agreement helps clarify expectations and commitments. While it doesn't need to be formal, documenting your shared understanding can prevent misalignments later.</p>
+                    
+                    <h4>Key Elements to Include:</h4>
+                    <ul>
+                        <li><strong>Goals and focus areas:</strong> What you aim to achieve together</li>
+                        <li><strong>Meeting frequency and duration:</strong> We recommend monthly meetings of 60-90 minutes for at least 3 sessions</li>
+                        <li><strong>Communication preferences:</strong> How and when to contact each other between meetings</li>
+                        <li><strong>Confidentiality:</strong> Agreement on what information stays between you</li>
+                        <li><strong>Duration:</strong> Initial timeframe for the mentorship (can be extended by mutual agreement)</li>
+                        <li><strong>Check-in points:</strong> When you'll evaluate progress and the relationship</li>
+                        <li><strong>Exit strategy:</strong> How either party can respectfully end the mentorship if needed</li>
+                    </ul>
+                    
+                    <div class="template">
+                        <div class="template-title">Mentorship Agreement Template</div>
+                        <div class="template-content">
+                            <p><strong>Mentor:</strong> [Name]<br>
+                            <strong>Mentee:</strong> [Name]<br>
+                            <strong>Start Date:</strong> [Date]<br>
+                            <strong>Initial Review Date:</strong> After 3 sessions (approximately [date])</p>
+                            
+                            <p><strong>Goals and Focus Areas:</strong><br>
+                            1. [Specific goal or area]<br>
+                            2. [Specific goal or area]<br>
+                            3. [Specific goal or area]</p>
+                            
+                            <p><strong>Meeting Schedule:</strong><br>
+                            Frequency: [e.g., Monthly]<br>
+                            Duration: [e.g., 60 minutes]<br>
+                            Preferred day/time: [e.g., First Tuesday of the month at 4pm]</p>
+                            
+                            <p><strong>Communication Between Meetings:</strong><br>
+                            Primary method: [e.g., Email, platform messaging]<br>
+                            Response timeframe: [e.g., Within 2-3 business days]</p>
+                            
+                            <p><strong>Confidentiality Agreement:</strong><br>
+                            We agree to keep the content of our discussions confidential unless explicitly agreed otherwise.</p>
+                            
+                            <p><strong>Responsibilities:</strong><br>
+                            <em>Mentor will:</em><br>
+                            - Provide guidance based on experience<br>
+                            - Share relevant resources<br>
+                            - Give constructive feedback<br>
+                            - [Other commitments]</p>
+                            
+                            <p><em>Mentee will:</em><br>
+                            - Come prepared to meetings<br>
+                            - Actively follow up on action items<br>
+                            - Be open to feedback<br>
+                            - [Other commitments]</p>
+                            
+                            <p><strong>Mentorship Review:</strong><br>
+                            We will review our mentorship after 3 sessions to evaluate progress and decide whether to continue.</p>
+                            
+                            <p><strong>Ending the Mentorship:</strong><br>
+                            Either party may end the mentorship at any time by communicating their decision respectfully, preferably with at least one week's notice.</p>
+                        </div>
+                        <a href="#" class="download-link">Download Agreement Template</a>
+                    </div>
+                </div>
+                
+                <div id="goal-setting">
+                    <h3>Setting Goals and Expectations</h3>
+                    <p>Clear, specific goals help focus your mentorship and make progress measurable. Effective mentorship goals are:</p>
+                    
+                    <h4>SMART Goal Framework:</h4>
+                    <ul>
+                        <li><strong>Specific:</strong> Clearly defined outcomes (e.g., "Improve presentation skills," not just "Improve skills")</li>
+                        <li><strong>Measurable:</strong> How will you know when the goal is achieved?</li>
+                        <li><strong>Achievable:</strong> Realistic within the timeframe and resources available</li>
+                        <li><strong>Relevant:</strong> Connected to career development or specific challenges</li>
+                        <li><strong>Time-bound:</strong> With target dates for milestones and completion</li>
+                    </ul>
+                    
+                    <h4>Potential Goal Categories:</h4>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Sample Goals</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Technical Skills</td>
+                                    <td>
+                                        - Learn and implement a new technology<br>
+                                        - Improve code quality and testing practices<br>
+                                        - Develop proficiency in a specific programming language
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Career Development</td>
+                                    <td>
+                                        - Define a 2-year career advancement plan<br>
+                                        - Prepare for a specific promotion<br>
+                                        - Transition to a different role within tech
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Professional Skills</td>
+                                    <td>
+                                        - Improve public speaking and presentation abilities<br>
+                                        - Develop leadership skills<br>
+                                        - Enhance project management capabilities
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Workplace Navigation</td>
+                                    <td>
+                                        - Develop strategies for workplace challenges<br>
+                                        - Navigate company politics effectively<br>
+                                        - Advocate for oneself in meetings and evaluations
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Work-Life Balance</td>
+                                    <td>
+                                        - Create sustainable boundaries<br>
+                                        - Develop stress management techniques<br>
+                                        - Navigate industry demands while maintaining wellbeing
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mentee-tip">
+                        <div class="mentee-tip-title">Mentee Tip</div>
+                        <p>Limit yourself to 2-3 primary goals for a 3-6 month mentorship. Having too many goals can dilute focus and make it harder to achieve meaningful progress.</p>
+                    </div>
+                    
+                    <div class="mentor-tip">
+                        <div class="mentor-tip-title">Mentor Tip</div>
+                        <p>Help your mentee refine vague goals into specific, actionable objectives. Ask probing questions like "What would success look like?" or "How will we know when you've achieved this?"</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="effective-sessions">
+                <h2>4. Conducting Effective Sessions</h2>
+                
+                <div id="preparation">
+                    <h3>Preparation</h3>
+                    <p>Productive mentorship sessions begin with good preparation from both parties.</p>
+                    
+                    <h4>For Mentees:</h4>
+                    <ul>
+                        <li><strong>Review previous session notes</strong> and follow-up on any action items</li>
+                        <li><strong>Prepare an agenda</strong> with specific topics you want to discuss</li>
+                        <li><strong>Identify specific questions</strong> for your mentor</li>
+                        <li><strong>Reflect on progress</strong> toward your mentorship goals</li>
+                        <li><strong>Consider challenges</strong> you've faced since the last meeting</li>
+                    </ul>
+                    
+                    <h4>For Mentors:</h4>
+                    <ul>
+                        <li><strong>Review previous session notes</strong> and any follow-up items you promised</li>
+                        <li><strong>Prepare resources or examples</strong> relevant to the mentee's goals</li>
+                        <li><strong>Think about questions</strong> that might help deepen the discussion</li>
+                        <li><strong>Consider your mentee's progress</strong> and areas where they might need additional support</li>
+                        <li><strong>Reflect on experiences</strong> that might be relevant to share</li>
+                    </ul>
+                    
+                    <div class="template">
+                        <div class="template-title">Session Preparation Template</div>
+                        <div class="template-content">
+                            <p><strong>Date of Next Session:</strong> [Date]</p>
+                            
+                            <p><strong>Progress Since Last Session:</strong><br>
+                            - [Action item completed]<br>
+                            - [Progress made]<br>
+                            - [Challenge encountered]</p>
+                            
+                            <p><strong>Topics for Discussion:</strong><br>
+                            1. [Specific topic]<br>
+                            2. [Specific topic]<br>
+                            3. [Specific topic]</p>
+                            
+                            <p><strong>Specific Questions:</strong><br>
+                            - [Question 1]<br>
+                            - [Question 2]</p>
+                            
+                            <p><strong>Resources to Share/Review:</strong><br>
+                            - [Resource 1]<br>
+                            - [Resource 2]</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="during-meetings">
+                    <h3>During Meetings</h3>
+                    <p>Effective meetings involve active participation from both mentor and mentee. Here are key elements for productive sessions:</p>
+                    
+                    <h4>Session Structure</h4>
+                    <p>A typical 60-minute mentorship session might follow this structure:</p>
+                    <ol>
+                        <li><strong>Check-in (5-10 min):</strong> Brief personal update and setting the session's focus</li>
+                        <li><strong>Progress review (10 min):</strong> Discuss progress since the last meeting, including action items</li>
+                        <li><strong>Main discussion (30-35 min):</strong> Focus on the primary topics, challenges, or questions</li>
+                        <li><strong>Action planning (10 min):</strong> Identify next steps and commitments</li>
+                        <li><strong>Wrap-up (5 min):</strong> Summarize key takeaways and confirm the next meeting</li>
+                    </ol>
+                    
+                    <h4>Effective Communication Practices</h4>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Practice</th>
+                                    <th>For Mentors</th>
+                                    <th>For Mentees</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Active Listening</td>
+                                    <td>Focus fully on understanding the mentee's situation before offering advice</td>
+                                    <td>Listen carefully to advice and perspectives, avoiding defensiveness</td>
+                                </tr>
+                                <tr>
+                                    <td>Asking Questions</td>
+                                    <td>Ask open-ended questions that prompt reflection and deeper thinking</td>
+                                    <td>Ask specific questions that clarify advice or seek concrete examples</td>
+                                </tr>
+                                <tr>
+                                    <td>Providing Feedback</td>
+                                    <td>Offer constructive feedback that is specific, actionable, and balanced</td>
+                                    <td>Be open to feedback and clarify understanding</td>
+                                </tr>
+                                <tr>
+                                    <td>Sharing Experiences</td>
+                                    <td>Share relevant experiences without dominating the conversation</td>
+                                    <td>Connect shared experiences to your own situation</td>
+                                </tr>
+                                <tr>
+                                    <td>Managing Time</td>
+                                    <td>Guide the conversation to ensure key topics are covered</td>
+                                    <td>Respect time boundaries and prioritize discussion topics</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-box-title">Effective Mentorship Questions</div>
+                        <p><strong>For Mentors:</strong></p>
+                        <ul>
+                            <li>"What specific challenge are you facing with [situation]?"</li>
+                            <li>"What approaches have you tried so far?"</li>
+                            <li>"How do you think that situation could have been handled differently?"</li>
+                            <li>"What does success look like for you in this scenario?"</li>
+                            <li>"What's one step you could take this week toward your goal?"</li>
+                        </ul>
+                        <p><strong>For Mentees:</strong></p>
+                        <ul>
+                            <li>"Can you share an example of how you've handled a similar situation?"</li>
+                            <li>"What resources would you recommend for learning more about [topic]?"</li>
+                            <li>"What skills were most valuable in helping you advance to your current position?"</li>
+                            <li>"How would you approach [specific challenge]?"</li>
+                            <li>"What feedback do you have on my approach to [situation/task]?"</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div id="follow-up">
+                    <h3>Follow-up</h3>
+                    <p>What happens between sessions is often as important as the sessions themselves. Effective follow-up ensures continuous progress and maximizes the value of your mentorship.</p>
+                    
+                    <h4>Session Documentation</h4>
+                    <p>After each session, it's valuable to document the key points discussed and commitments made. The mentee typically takes the lead on this, but both parties should contribute and agree on the summary.</p>
+                    
+                    <div class="template">
+                        <div class="template-title">Session Summary Template</div>
+                        <div class="template-content">
+                            <p><strong>Date:</strong> [Date]<br>
+                            <strong>Duration:</strong> [Time]</p>
+                            
+                            <p><strong>Key Topics Discussed:</strong><br>
+                            - [Topic 1]<br>
+                            - [Topic 2]<br>
+                            - [Topic 3]</p>
+                            
+                            <p><strong>Main Insights/Advice:</strong><br>
+                            - [Insight 1]<br>
+                            - [Insight 2]</p>
+                            
+                            <p><strong>Action Items for Mentee:</strong><br>
+                            - [Action 1] by [date]<br>
+                            - [Action 2] by [date]</p>
+                            
+                            <p><strong>Action Items for Mentor:</strong><br>
+                            - [Action 1] by [date]<br>
+                            - [Action 2] by [date]</p>
+                            
+                            <p><strong>Resources to Share:</strong><br>
+                            - [Resource 1]<br>
+                            - [Resource 2]</p>
+                            
+                            <p><strong>Next Meeting:</strong> [Date and time]<br>
+                            <strong>Proposed Topics:</strong> [Topics for next meeting]</p>
+                        </div>
+                    </div>
+                    
+                    <h4>Between-Session Activities</h4>
+                    <ul>
+                        <li><strong>Complete action items</strong> agreed upon during the session</li>
+                        <li><strong>Reflect on discussions</strong> and how insights apply to your work</li>
+                        <li><strong>Review relevant resources</strong> shared by your mentor/mentee</li>
+                        <li><strong>Note questions or topics</strong> that arise for the next session</li>
+                        <li><strong>Share relevant updates</strong> if appropriate (e.g., progress on a project discussed)</li>
+                    </ul>
+                    
+                    <div class="mentee-tip">
+                        <div class="mentee-tip-title">Mentee Tip</div>
+                        <p>Keep a mentorship journal to track your progress, insights, and questions between sessions. This helps you recognize your growth and provides material for future discussions.</p>
+                    </div>
+                    
+                    <div class="mentor-tip">
+                        <div class="mentor-tip-title">Mentor Tip</div>
+                        <p>Brief check-ins between formal sessions can be valuable. A quick message asking, "How is your presentation preparation going?" or "Did that approach to your challenge work out?" shows investment in your mentee's progress.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="challenges">
+                <h2>5. Navigating Challenges</h2>
+                
+                <div id="common-challenges">
+                    <h3>Common Challenges</h3>
+                    <p>Even with the best intentions, mentorship relationships can face challenges. Addressing these proactively helps maintain a productive relationship.</p>
+                    
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Challenge</th>
+                                    <th>Signs</th>
+                                    <th>Solutions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Mismatched Expectations</td>
+                                    <td>
+                                        - Frustration after meetings<br>
+                                        - Feeling that needs aren't being met<br>
+                                        - Diverging ideas about the relationship's purpose
+                                    </td>
+                                    <td>
+                                        - Revisit and clarify goals<br>
+                                        - Openly discuss expectations<br>
+                                        - Consider adjusting the focus or structure
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Scheduling Difficulties</td>
+                                    <td>
+                                        - Frequent cancellations<br>
+                                        - Difficulty finding meeting times<br>
+                                        - Meetings consistently shortened
+                                    </td>
+                                    <td>
+                                        - Establish regular, recurring meetings<br>
+                                        - Consider shorter but more frequent sessions<br>
+                                        - Use the platform's scheduling tool
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Limited Progress</td>
+                                    <td>
+                                        - Revisiting the same topics repeatedly<br>
+                                        - Little action between meetings<br>
+                                        - Feeling stuck
+                                    </td>
+                                    <td>
+                                        - Break goals into smaller, actionable steps<br>
+                                        - Set concrete deadlines for action items<br>
+                                        - Reassess if goals are realistic
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Communication Issues</td>
+                                    <td>
+                                        - Misunderstandings<br>
+                                        - Discomfort during conversations<br>
+                                        - One person dominating discussions
+                                    </td>
+                                    <td>
+                                        - Establish communication guidelines<br>
+                                        - Agree on a feedback mechanism<br>
+                                        - Adjust communication styles as needed
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Waning Commitment</td>
+                                    <td>
+                                        - Decreased engagement<br>
+                                        - Delayed responses<br>
+                                        - Less preparation for meetings
+                                    </td>
+                                    <td>
+                                        - Discuss current value and challenges<br>
+                                        - Consider refreshing goals or approach<br>
+                                        - Determine if it's time to conclude
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <div class="warning-box-title">When to Seek Support</div>
+                        <p>If you encounter persistent issues or uncomfortable situations in your mentorship, don't hesitate to contact TechConnect support at <a href="mailto:support@techconnect.nz">support@techconnect.nz</a>. We're here to help ensure positive experiences for all participants.</p>
+                    </div>
+                </div>
+                
+                <div id="ending-mentorship">
+                    <h3>Ending a Mentorship</h3>
+                    <p>All mentorships eventually come to an end, whether after achieving the original goals, reaching a natural conclusion point, or if the relationship isn't working as expected. Proper closure is important for both parties.</p>
+                    
+                    <h4>Natural Conclusion</h4>
+                    <p>When a mentorship has fulfilled its purpose:</p>
+                    <ol>
+                        <li><strong>Signal the transition:</strong> Discuss approaching the end of the formal mentorship period</li>
+                        <li><strong>Review achievements:</strong> Reflect on goals met and progress made</li>
+                        <li><strong>Celebrate successes:</strong> Acknowledge growth and accomplishments</li>
+                        <li><strong>Provide mutual feedback:</strong> Share what worked well and areas for improvement</li>
+                        <li><strong>Discuss future contact:</strong> Decide if and how you'll stay connected</li>
+                    </ol>
+                    
+                    <h4>Early Ending</h4>
+                    <p>If a mentorship needs to end before achieving its goals:</p>
+                    <ul>
+                        <li><strong>Be honest but respectful:</strong> Explain your reasons without blame</li>
+                        <li><strong>Provide notice:</strong> Give the other person time to adjust (at least one meeting's notice when possible)</li>
+                        <li><strong>Acknowledge value:</strong> Recognize what was valuable about the experience</li>
+                        <li><strong>Offer transition support:</strong> Provide resources or suggestions if appropriate</li>
+                        <li><strong>Maintain confidentiality:</strong> Continue to respect the privacy of your discussions</li>
+                    </ul>
+                    
+                    <div class="template">
+                        <div class="template-title">Mentorship Conclusion Message Template</div>
+                        <div class="template-content">
+                            <p>Kia ora [Name],</p>
+                            
+                            <p>As we approach our [X] month of mentorship, I wanted to take a moment to reflect on our journey together. I've really valued our conversations about [specific topics] and have appreciated your [specific positive aspects of the relationship].</p>
+                            
+                            <p>I believe we've made great progress on the goals we set out to achieve, particularly [mention specific achievements]. I've learned [specific insights] through our discussions.</p>
+                            
+                            <p>As we discussed initially, our formal mentorship was planned for [timeframe], and I think we're reaching a natural conclusion point. I'd like to use our next meeting to celebrate what we've accomplished and discuss any final questions or topics.</p>
+                            
+                            <p>I'd also welcome your thoughts on how this mentorship has worked for you and any feedback you have that might help me improve in future mentorship relationships.</p>
+                            
+                            <p>Thank you again for your time and insights throughout this process.</p>
+                            
+                            <p>Ngā mihi,<br>[Your Name]</p>
+                        </div>
+                    </div>
+                    
+                    <div class="tip-box">
+                        <div class="tip-box-title">Continuing the Relationship</div>
+                        <p>Many mentorships evolve into more casual professional relationships after the formal period ends. Be clear about expectations for any ongoing contact, such as checking in quarterly or connecting at industry events.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="cultural-considerations">
+                <h2>6. Cultural Considerations</h2>
+                <p>TechConnect NZ values the diverse cultural perspectives within Aotearoa New Zealand. Cultural awareness and sensitivity enhance mentorship relationships and create more inclusive experiences.</p>
+                
+                <h3>Te Ao Māori Perspectives</h3>
+                <p>Incorporating Te Ao Māori (the Māori worldview) can enrich mentorship relationships. Consider these concepts:</p>
+                <ul>
+                    <li><strong>Manaakitanga (Hospitality and Care):</strong> Showing respect, generosity, and care in your interactions</li>
+                    <li><strong>Whanaungatanga (Relationships and Connections):</strong> Recognizing the importance of building relationships and understanding connections</li>
+                    <li><strong>Ako (Reciprocal Learning):</strong> Acknowledging that both mentor and mentee bring valuable knowledge to share</li>
+                    <li><strong>Tuakana-Teina (Relationship Between Senior and Junior):</strong> A relationship where the more experienced person (tuakana) helps the less experienced (teina), while recognizing that roles can switch in different contexts</li>
+                </ul>
+                
+                <div class="tip-box">
+                    <div class="tip-box-title">Cultural Introductions</div>
+                    <p>In New Zealand, many professional interactions begin with a brief mihi or introduction that may include sharing your name, where you're from, and your cultural connections. Creating space for this type of introduction can set a positive tone for culturally responsive mentorship.</p>
+                </div>
+                
+                <h3>Cross-Cultural Communication</h3>
+                <p>When mentoring across different cultural backgrounds:</p>
+                <ul>
+                    <li><strong>Be aware of communication styles:</strong> Some cultures value direct communication, while others prefer indirect approaches</li>
+                    <li><strong>Ask rather than assume:</strong> If unsure about cultural protocols or preferences, respectfully ask</li>
+                    <li><strong>Recognize different perspectives:</strong> Be open to approaches and solutions influenced by different cultural worldviews</li>
+                    <li><strong>Acknowledge the impact of culture:</strong> Understand how cultural factors may influence career paths, challenges, and opportunities</li>
+                    <li><strong>Create space for cultural expression:</strong> Welcome the integration of cultural perspectives in professional development</li>
+                </ul>
+                
+                <div class="mentor-tip">
+                    <div class="mentor-tip-title">Mentor Tip</div>
+                    <p>When mentoring someone from a different cultural background, take time to learn about their culture, particularly aspects that may influence professional interactions. This demonstrates respect and helps build trust.</p>
+                </div>
+                
+                <h3>Supporting Diverse Identities</h3>
+                <p>TechConnect NZ focuses on supporting women and non-binary individuals in tech, who may face unique challenges in the industry:</p>
+                <ul>
+                    <li><strong>Recognize systemic barriers:</strong> Understand how gender bias, discrimination, and other structural challenges may affect your mentee's experiences</li>
+                    <li><strong>Validate experiences:</strong> Listen with empathy when mentees share challenges related to their identity</li>
+                    <li><strong>Avoid assumptions:</strong> Don't make assumptions about experiences based on gender identity or other aspects of identity</li>
+                    <li><strong>Share relevant experiences:</strong> If comfortable, share your own experiences navigating identity-related challenges</li>
+                    <li><strong>Focus on strengths:</strong> Emphasize building on unique perspectives and strengths rather than just overcoming barriers</li>
+                </ul>
+                
+                <div class="mentee-tip">
+                    <div class="mentee-tip-title">Mentee Tip</div>
+                    <p>If specific aspects of your identity are important to your professional experience or the support you're seeking, consider sharing this with your mentor. This can help them provide more relevant guidance and support.</p>
+                </div>
+            </section>
+
+            <section class="section" id="resources">
+                <h2>7. Additional Resources</h2>
+                <p>TechConnect NZ offers a variety of supplementary resources to enhance your mentorship experience:</p>
+                
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-title">Workshops & Webinars</div>
+                        <p>Monthly skill-building sessions on technical and professional development topics. These can provide additional learning opportunities to complement your mentorship.</p>
+                        <a href="#" class="btn">View Calendar</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-title">Mentorship Skills Library</div>
+                        <p>Articles, videos, and guides on effective mentoring and being mentored. Includes specialized resources for different tech disciplines.</p>
+                        <a href="#" class="btn">Access Library</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-title">Community Forums</div>
+                        <p>Connect with other mentors and mentees to share experiences, ask questions, and build your network within the TechConnect community.</p>
+                        <a href="#" class="btn">Join Discussions</a>
+                    </div>
+                    
+                    <div class="resource-card">
+                        <div class="resource-title">Tech Career Resources</div>
+                        <p>Industry insights, job search tips, and professional development resources specific to the New Zealand tech landscape.</p>
+                        <a href="#" class="btn">Explore Resources</a>
+                    </div>
+                </div>
+                
+                <h3>External Resources</h3>
+                <ul>
+                    <li><strong>NZ Tech Industry Groups:</strong> <a href="#">NZTech</a>, <a href="#">IT Professionals NZ</a>, <a href="#">Women in Tech NZ</a></li>
+                    <li><strong>Diversity in Tech Organizations:</strong> <a href="#">Code Like a Girl NZ</a>, <a href="#">Māori in Tech</a>, <a href="#">Rainbow Tech Alliance</a></li>
+                    <li><strong>Professional Development:</strong> <a href="#">LinkedIn Learning</a>, <a href="#">Coursera</a>, <a href="#">Skillshare</a></li>
+                    <li><strong>Industry Events:</strong> <a href="#">Techweek NZ</a>, <a href="#">DevmeetNZ</a>, <a href="#">Local Tech Meetups</a></li>
+                </ul>
+                
+                <div class="tip-box">
+                    <div class="tip-box-title">Finding the Right Resources</div>
+                    <p>Not sure which resources might be most helpful for your specific mentorship focus? Contact our support team at <a href="mailto:support@techconnect.nz">support@techconnect.nz</a> for personalized recommendations.</p>
+                </div>
+            </section>
+
+            <section class="section" id="templates">
+                <h2>8. Templates and Tools</h2>
+                <p>These templates and tools are designed to streamline your mentorship process and ensure productive engagement.</p>
+                
+                <div class="templates-section">
+                    <h3>Planning Tools</h3>
+                    <ul>
+                        <li><a href="#" class="download-link">Mentorship Goal Setting Worksheet</a></li>
+                        <li><a href="#" class="download-link">SMART Goal Template</a></li>
+                        <li><a href="#" class="download-link">Mentorship Agreement Template</a></li>
+                        <li><a href="#" class="download-link">Skills Assessment Checklist</a></li>
+                    </ul>
+                    
+                    <h3>Meeting Tools</h3>
+                    <ul>
+                        <li><a href="#" class="download-link">First Meeting Preparation Guide</a></li>
+                        <li><a href="#" class="download-link">Session Agenda Template</a></li>
+                        <li><a href="#" class="download-link">Meeting Notes Template</a></li>
+                        <li><a href="#" class="download-link">Action Plan Template</a></li>
+                    </ul>
+                    
+                    <h3>Evaluation Tools</h3>
+                    <ul>
+                        <li><a href="#" class="download-link">Mentorship Progress Assessment</a></li>
+                        <li><a href="#" class="download-link">Mentorship Experience Feedback Form</a></li>
+                        <li><a href="#" class="download-link">Skills Development Tracker</a></li>
+                        <li><a href="#" class="download-link">Mentorship Conclusion Checklist</a></li>
+                    </ul>
+                </div>
+                
+                <div class="tip-box">
+                    <div class="tip-box-title">Platform Tools</div>
+                    <p>Remember to utilize the built-in tools on the TechConnect platform, including:</p>
+                    <ul>
+                        <li><strong>Meeting Scheduler:</strong> For setting up recurring mentorship sessions</li>
+                        <li><strong>Shared Notes:</strong> For documenting key discussion points and action items</li>
+                        <li><strong>Progress Tracker:</strong> For monitoring advancement toward established goals</li>
+                        <li><strong>Resource Library:</strong> For accessing and sharing relevant materials</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 TechConnect NZ. All rights reserved.
+    </footer>
+</body>
+</html>
