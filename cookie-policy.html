@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy | TechConnect NZ</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+        }
+
+        .content-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        h3 {
+            color: var(--gray-700);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: var(--gray-100);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .info-box {
+            background-color: rgba(0, 188, 212, 0.1);
+            border: 1px solid var(--secondary-light);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .date-updated {
+            text-align: right;
+            color: var(--gray-500);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        .cookie-table th,
+        .cookie-table td {
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            text-align: left;
+        }
+
+        .cookie-table th {
+            background-color: var(--gray-100);
+            font-weight: 600;
+        }
+
+        .cookie-table tr:nth-child(even) {
+            background-color: var(--gray-50);
+        }
+
+        .cookie-controls {
+            background-color: var(--gray-100);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin: 2rem 0;
+        }
+
+        .cookie-category {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-300);
+        }
+
+        .cookie-category:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .cookie-category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .cookie-category-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gray-800);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-400);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .toc {
+            background-color: var(--gray-100);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .toc-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            z-index: 1000;
+            display: none;
+        }
+
+        .cookie-banner-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .cookie-banner-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cookie-banner-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 1.5rem;
+            }
+
+            .cookie-banner-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cookie-banner-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="/api/placeholder/30/30" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-header">
+            <h1 class="page-title">Cookie Policy</h1>
+            <p class="page-description">Information about how TechConnect NZ uses cookies and similar technologies.</p>
+        </div>
+
+        <div class="content-container">
+            <div class="date-updated">Last Updated: May 10, 2025</div>
+
+            <div class="toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#introduction">1. Introduction</a></li>
+                    <li><a href="#what-are-cookies">2. What Are Cookies</a></li>
+                    <li><a href="#cookies-we-use">3. Cookies We Use</a></li>
+                    <li><a href="#third-party">4. Third-Party Cookies</a></li>
+                    <li><a href="#managing">5. Managing Your Cookie Preferences</a></li>
+                    <li><a href="#impact">6. Impact of Disabling Cookies</a></li>
+                    <li><a href="#changes">7. Changes to This Cookie Policy</a></li>
+                    <li><a href="#contact">8. Contact Us</a></li>
+                </ul>
+            </div>
+
+            <section class="section" id="introduction">
+                <h2>1. Introduction</h2>
+                <p>This Cookie Policy explains how TechConnect NZ ("we", "us", or "our") uses cookies and similar technologies on our website and platform (collectively, the "Services"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.</p>
+                <p>This Cookie Policy should be read together with our <a href="privacy.html">Privacy Policy</a>, which provides more information about how we collect, use, and protect your personal information.</p>
+                <p>By using our Services, you agree to our use of cookies and similar technologies as described in this Cookie Policy.</p>
+            </section>
+
+            <section class="section" id="what-are-cookies">
+                <h2>2. What Are Cookies</h2>
+                <p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to the website owners. Cookies can be "persistent" or "session" cookies:</p>
+                <ul>
+                    <li><strong>Persistent cookies</strong> remain on your device after you close your browser and can be used by the website on subsequent visits. These cookies expire after a specified period or can be manually deleted.</li>
+                    <li><strong>Session cookies</strong> are temporary and are deleted when you close your browser. These cookies help websites recognize you as the same user throughout your visit.</li>
+                </ul>
+                
+                <h3>Similar Technologies</h3>
+                <p>In addition to cookies, we may use other similar technologies, including:</p>
+                <ul>
+                    <li><strong>Web beacons:</strong> Small graphic images (also known as "pixel tags" or "clear GIFs") that may be included on our Services and used to track user navigation and web browsing behavior.</li>
+                    <li><strong>Local storage:</strong> Similar to cookies but with greater capacity and typically stored on your device, not your browser.</li>
+                    <li><strong>Device fingerprinting:</strong> Collection and analysis of information from your device, such as your browser type, operating system, and installed plugins, to create a unique identifier.</li>
+                </ul>
+                
+                <p>For simplicity, we refer to all these technologies as "cookies" in this policy.</p>
+            </section>
+
+            <section class="section" id="cookies-we-use">
+                <h2>3. Cookies We Use</h2>
+                <p>We use different types of cookies for various purposes. The cookies we use fall into the following categories:</p>
+                
+                <h3>Strictly Necessary Cookies</h3>
+                <p>These cookies are essential for you to browse our website and use its features, such as accessing secure areas of the site. Without these cookies, certain services cannot be provided.</p>
+                
+                <h3>Functional Cookies</h3>
+                <p>These cookies enable our website to remember choices you make (such as your username, language, or region) and provide enhanced, more personal features. They may also be used to provide services you have requested, such as watching a video or commenting on a blog.</p>
+                
+                <h3>Performance/Analytics Cookies</h3>
+                <p>These cookies collect information about how you use our website, such as which pages you visit most often and if you receive error messages. They help us improve how our website works and make it easier for you to navigate.</p>
+                
+                <h3>Targeting/Advertising Cookies</h3>
+                <p>These cookies are used to deliver content that is more relevant to you and your interests. They may be placed on our website by our advertising partners and used to build a profile of your interests and show you relevant advertisements on other websites.</p>
+                
+                <div class="cookie-table-container">
+                    <table class="cookie-table">
+                        <thead>
+                            <tr>
+                                <th>Cookie Name</th>
+                                <th>Category</th>
+                                <th>Purpose</th>
+                                <th>Duration</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>session_id</td>
+                                <td>Strictly Necessary</td>
+                                <td>Maintains your session state and authentication status</td>
+                                <td>Session</td>
+                            </tr>
+                            <tr>
+                                <td>csrf_token</td>
+                                <td>Strictly Necessary</td>
+                                <td>Helps protect against cross-site request forgery attacks</td>
+                                <td>Session</td>
+                            </tr>
+                            <tr>
+                                <td>user_preferences</td>
+                                <td>Functional</td>
+                                <td>Stores your platform preferences (e.g., theme, language)</td>
+                                <td>1 year</td>
+                            </tr>
+                            <tr>
+                                <td>accessibility_settings</td>
+                                <td>Functional</td>
+                                <td>Remembers your accessibility settings</td>
+                                <td>1 year</td>
+                            </tr>
+                            <tr>
+                                <td>_ga</td>
+                                <td>Analytics</td>
+                                <td>Used by Google Analytics to distinguish users</td>
+                                <td>2 years</td>
+                            </tr>
+                            <tr>
+                                <td>_gid</td>
+                                <td>Analytics</td>
+                                <td>Used by Google Analytics to identify users</td>
+                                <td>24 hours</td>
+                            </tr>
+                            <tr>
+                                <td>intercom-session</td>
+                                <td>Functional</td>
+                                <td>Used by our customer support platform to identify your conversation history</td>
+                                <td>1 week</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="section" id="third-party">
+                <h2>4. Third-Party Cookies</h2>
+                <p>Some cookies are placed by third parties on our website. These third parties may include:</p>
+                <ul>
+                    <li><strong>Analytics providers</strong> (such as Google Analytics) to help us understand how visitors use our site</li>
+                    <li><strong>Customer support tools</strong> (such as Intercom) to provide chat and support functionality</li>
+                    <li><strong>Social media platforms</strong> (such as Facebook, Twitter, LinkedIn) if you use these features on our site</li>
+                </ul>
+                
+                <h3>Third-Party Services We Use</h3>
+                <p>Below is a list of third-party services whose cookies may be used on our website:</p>
+                <ul>
+                    <li><strong>Google Analytics:</strong> Web analytics service that tracks and reports website traffic. <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a></li>
+                    <li><strong>Intercom:</strong> Customer messaging platform. <a href="https://www.intercom.com/legal/privacy" target="_blank">Privacy Policy</a></li>
+                    <li><strong>AWS:</strong> Cloud service provider for hosting. <a href="https://aws.amazon.com/privacy/" target="_blank">Privacy Policy</a></li>
+                </ul>
+                
+                <div class="info-box">
+                    <p><strong>Note:</strong> We do not control these third-party cookies. We encourage you to check the privacy policies of these third parties for more information about their cookies and how to manage them.</p>
+                </div>
+            </section>
+
+            <section class="section" id="managing">
+                <h2>5. Managing Your Cookie Preferences</h2>
+                <p>You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences in the following ways:</p>
+                
+                <h3>Cookie Preference Center</h3>
+                <p>You can manage your cookie preferences through our Cookie Preference Center, which you can access by clicking "Manage Cookies" in the footer of our website or by clicking the button below:</p>
+                
+                <div class="cookie-controls">
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div class="cookie-category-title">Strictly Necessary Cookies</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked disabled>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies are essential and cannot be disabled.</p>
+                    </div>
+                    
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div class="cookie-category-title">Functional Cookies</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked id="functional-cookies">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies remember your preferences and enhance your experience.</p>
+                    </div>
+                    
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div class="cookie-category-title">Analytics Cookies</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked id="analytics-cookies">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies help us understand how visitors interact with our website.</p>
+                    </div>
+                    
+                    <div class="cookie-category">
+                        <div class="cookie-category-header">
+                            <div class="cookie-category-title">Targeting Cookies</div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="targeting-cookies">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <p>These cookies are used to deliver relevant content and advertisements.</p>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-outline" id="reject-all">Reject All</button>
+                        <button class="btn btn-outline" id="accept-selected">Accept Selected</button>
+                        <button class="btn btn-primary" id="accept-all">Accept All</button>
+                    </div>
+                </div>
+                
+                <h3>Browser Controls</h3>
+                <p>Most web browsers allow you to control cookies through their settings preferences. The following links provide information on how to manage cookies in common browsers:</p>
+                <ul>
+                    <li><a href="https://support.google.com/chrome/answer/95647" target="_blank">Google Chrome</a></li>
+                    <li><a href="https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop" target="_blank">Mozilla Firefox</a></li>
+                    <li><a href="https://support.apple.com/en-nz/guide/safari/sfri11471/mac" target="_blank">Apple Safari</a></li>
+                    <li><a href="https://support.microsoft.com/en-us/windows/microsoft-edge-browsing-data-and-privacy-bb8174ba-9d73-dcf2-9b4a-c582b4e640dd" target="_blank">Microsoft Edge</a></li>
+                </ul>
+                
+                <h3>Mobile Device Controls</h3>
+                <p>On mobile devices, you can control cookies through:</p>
+                <ul>
+                    <li><strong>iOS:</strong> Settings > Safari > Privacy & Security > Block Cookies</li>
+                    <li><strong>Android:</strong> Open Chrome > Settings > Site Settings > Cookies</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p><strong>Please Note:</strong> If you choose to reject cookies, you may still use our website, but your access to some functionality and areas may be restricted.</p>
+                </div>
+            </section>
+
+            <section class="section" id="impact">
+                <h2>6. Impact of Disabling Cookies</h2>
+                <p>Disabling certain cookies may impact your experience on our website. Here's what might happen if you disable different types of cookies:</p>
+                
+                <h3>If You Disable Strictly Necessary Cookies</h3>
+                <p>You may not be able to:</p>
+                <ul>
+                    <li>Log in to your account</li>
+                    <li>Access secure areas of the platform</li>
+                    <li>Use the mentorship matching features</li>
+                    <li>Submit forms or save preferences</li>
+                </ul>
+                
+                <h3>If You Disable Functional Cookies</h3>
+                <p>You may experience:</p>
+                <ul>
+                    <li>Loss of customized settings (e.g., language preferences)</li>
+                    <li>Inability to save accessibility settings between sessions</li>
+                    <li>Reduced personalization features</li>
+                </ul>
+                
+                <h3>If You Disable Analytics Cookies</h3>
+                <p>There will be minimal impact on your browsing experience, but:</p>
+                <ul>
+                    <li>We won't be able to analyze how you use our site</li>
+                    <li>We may not be able to identify and fix usability issues</li>
+                    <li>We'll have less information to improve our platform based on user behavior</li>
+                </ul>
+                
+                <h3>If You Disable Targeting Cookies</h3>
+                <p>You may see:</p>
+                <ul>
+                    <li>Less relevant content and recommendations</li>
+                    <li>Generic rather than personalized messaging</li>
+                </ul>
+            </section>
+
+            <section class="section" id="changes">
+                <h2>7. Changes to This Cookie Policy</h2>
+                <p>We may update this Cookie Policy from time to time to reflect changes in technology, regulation, or our business practices. Any changes will be posted on this page with an updated revision date. If we make significant changes to this policy, we will notify you by:</p>
+                <ul>
+                    <li>Displaying a prominent notice on our website</li>
+                    <li>Sending an email to registered users</li>
+                    <li>Updating the "Last Updated" date at the top of this page</li>
+                </ul>
+                <p>We encourage you to review this policy periodically to stay informed about how we use cookies and other tracking technologies.</p>
+            </section>
+
+            <section class="section" id="contact">
+                <h2>8. Contact Us</h2>
+                <p>If you have any questions or concerns about our use of cookies or this Cookie Policy, please contact us at:</p>
+                <p>Email: <a href="mailto:privacy@techconnect.nz">privacy@techconnect.nz</a></p>
+                <p>Postal Address:<br>
+                TechConnect NZ<br>
+                123 Tech Street<br>
+                Wellington 6011<br>
+                New Zealand</p>
+                <p>For more information about how we protect your privacy, please see our <a href="privacy.html">Privacy Policy</a>.</p>
+            </section>
+        </div>
+    </main>
+
+    <div class="cookie-banner" id="cookie-banner">
+        <div class="cookie-banner-content">
+            <div class="cookie-banner-text">
+                <p>We use cookies to enhance your experience on our website. By continuing to browse, you agree to our use of cookies. To learn more, view our <a href="cookie-policy.html">Cookie Policy</a>.</p>
+            </div>
+            <div class="cookie-banner-actions">
+                <button class="btn btn-outline" id="cookie-settings">Cookie Settings</button>
+                <button class="btn btn-primary" id="accept-cookies">Accept All Cookies</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 TechConnect NZ. All rights reserved.
+    </footer>
+
+    <script>
+        // Cookie banner functionality (for demonstration)
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show cookie banner (in a real implementation, this would check if the user has already made cookie choices)
+            setTimeout(function() {
+                document.getElementById('cookie-banner').style.display = 'block';
+            }, 1000);
+            
+            // Accept cookies button
+            document.getElementById('accept-cookies').addEventListener('click', function() {
+                // In a real implementation, this would set cookies for user consent
+                document.getElementById('cookie-banner').style.display = 'none';
+            });
+            
+            // Cookie settings button
+            document.getElementById('cookie-settings').addEventListener('click', function() {
+                // In a real implementation, this would open cookie settings
+                document.getElementById('cookie-banner').style.display = 'none';
+                // Scroll to cookie controls
+                document.querySelector('.cookie-controls').scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Cookie preference center buttons
+            document.getElementById('reject-all').addEventListener('click', function() {
+                document.getElementById('functional-cookies').checked = false;
+                document.getElementById('analytics-cookies').checked = false;
+                document.getElementById('targeting-cookies').checked = false;
+                
+                // Show confirmation
+                alert('Your cookie preferences have been saved. Only strictly necessary cookies will be used.');
+            });
+            
+            document.getElementById('accept-selected').addEventListener('click', function() {
+                // In a real implementation, this would save the selected cookie preferences
+                alert('Your cookie preferences have been saved.');
+            });
+            
+            document.getElementById('accept-all').addEventListener('click', function() {
+                document.getElementById('functional-cookies').checked = true;
+                document.getElementById('analytics-cookies').checked = true;
+                document.getElementById('targeting-cookies').checked = true;
+                
+                // Show confirmation
+                alert('Your cookie preferences have been saved. All cookies have been accepted.');
+            });
+        });
+    </script>
+</body>
+</html>
