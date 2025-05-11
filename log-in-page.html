@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechConnect NZ | Login</title>
+    <title>Login | TechConnect NZ</title>
     <style>
         :root {
             --primary: #9c27b0;
@@ -38,16 +38,16 @@
             background-color: var(--gray-100);
             color: var(--gray-800);
             line-height: 1.6;
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
             background-color: var(--primary-dark);
             color: white;
             padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .header-container {
@@ -63,35 +63,31 @@
             display: flex;
             align-items: center;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             text-decoration: none;
             color: white;
         }
 
         .logo-img {
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            width: 100%;
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 30px;
+            margin-right: 0.75rem;
         }
 
         .login-container {
-            max-width: 480px;
-            width: 100%;
-            padding: 2rem;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+        }
+
+        .login-card {
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 2rem 0;
+            width: 100%;
+            max-width: 450px;
+            padding: 2rem;
         }
 
         .login-header {
@@ -100,13 +96,18 @@
         }
 
         .login-title {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--primary);
             margin-bottom: 0.5rem;
         }
 
         .login-subtitle {
             color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        .login-form {
+            margin-bottom: 1.5rem;
         }
 
         .form-group {
@@ -122,17 +123,38 @@
 
         .form-control {
             width: 100%;
-            padding: 0.875rem;
+            padding: 0.75rem;
             border: 1px solid var(--gray-300);
             border-radius: 4px;
             font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
+            transition: border-color 0.3s;
         }
 
         .form-control:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(186, 104, 200, 0.1);
             outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(156, 39, 176, 0.1);
+        }
+
+        .form-text {
+            display: block;
+            margin-top: 0.25rem;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .validation-error {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
         .form-check {
@@ -144,19 +166,10 @@
             margin-right: 0.5rem;
         }
 
-        .form-text {
-            font-size: 0.9rem;
-            color: var(--gray-600);
-            margin-top: 0.25rem;
-        }
-
         .forgot-password {
-            display: block;
-            text-align: right;
             color: var(--primary);
-            font-size: 0.95rem;
             text-decoration: none;
-            margin-top: 0.5rem;
+            font-size: 0.9rem;
         }
 
         .forgot-password:hover {
@@ -164,58 +177,42 @@
         }
 
         .btn {
-            display: inline-block;
-            padding: 0.875rem 1.5rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .btn-block {
             display: block;
             width: 100%;
-        }
-
-        .btn-primary {
+            padding: 0.75rem;
             background-color: var(--primary);
             color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-align: center;
+            text-decoration: none;
         }
 
-        .btn-primary:hover {
+        .btn:hover {
             background-color: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(156, 39, 176, 0.2);
         }
 
-        .btn-social {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .btn-secondary {
             background-color: white;
-            border: 1px solid var(--gray-300);
-            color: var(--gray-800);
-            margin-bottom: 1rem;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            margin-top: 1rem;
         }
 
-        .btn-social:hover {
+        .btn-secondary:hover {
             background-color: var(--gray-100);
-            border-color: var(--gray-400);
-        }
-
-        .btn-social img {
-            width: 24px;
-            margin-right: 0.75rem;
         }
 
         .divider {
             display: flex;
             align-items: center;
             margin: 1.5rem 0;
+            color: var(--gray-500);
+            font-size: 0.9rem;
         }
 
         .divider::before,
@@ -226,58 +223,42 @@
             background-color: var(--gray-300);
         }
 
-        .divider-text {
-            padding: 0 1rem;
-            color: var(--gray-500);
+        .divider::before {
+            margin-right: 1rem;
         }
 
-        .login-footer {
+        .divider::after {
+            margin-left: 1rem;
+        }
+
+        .register-prompt {
             text-align: center;
             margin-top: 1.5rem;
             color: var(--gray-600);
+            font-size: 0.9rem;
         }
 
-        .login-footer a {
+        .register-link {
             color: var(--primary);
             text-decoration: none;
+            font-weight: 600;
         }
 
-        .login-footer a:hover {
+        .register-link:hover {
             text-decoration: underline;
-        }
-
-        .validation-error {
-            color: var(--error);
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
-            display: none;
         }
 
         footer {
-            background-color: var(--gray-800);
-            color: white;
-            padding: 1.5rem 0;
             text-align: center;
+            padding: 1rem;
+            background-color: var(--gray-200);
+            color: var(--gray-600);
+            font-size: 0.9rem;
             margin-top: auto;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        .footer-content a {
-            color: var(--secondary-light);
-            text-decoration: none;
-        }
-
-        .footer-content a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 768px) {
-            .login-container {
+            .login-card {
                 padding: 1.5rem;
             }
         }
@@ -287,37 +268,22 @@
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">
-                <img src="/api/placeholder/40/40" alt="TechConnect Logo" class="logo-img">
+                <img src="/api/placeholder/30/30" alt="TechConnect Logo" class="logo-img">
                 TechConnect NZ
             </a>
         </div>
     </header>
 
-    <div class="container">
-        <div class="login-container">
+    <div class="login-container">
+        <div class="login-card">
             <div class="login-header">
                 <h1 class="login-title">Welcome Back</h1>
-                <p class="login-subtitle">Log in to continue your mentorship journey</p>
+                <p class="login-subtitle">Sign in to your TechConnect account</p>
             </div>
 
-            <div class="social-login">
-                <button class="btn btn-social btn-block">
-                    <img src="/api/placeholder/24/24" alt="Google">
-                    Continue with Google
-                </button>
-                <button class="btn btn-social btn-block">
-                    <img src="/api/placeholder/24/24" alt="LinkedIn">
-                    Continue with LinkedIn
-                </button>
-            </div>
-
-            <div class="divider">
-                <span class="divider-text">OR</span>
-            </div>
-
-            <form id="login-form">
+            <form class="login-form" id="login-form">
                 <div class="form-group">
-                    <label for="email">Email Address</label>
+                    <label for="email">Email</label>
                     <input type="email" id="email" class="form-control" required>
                     <div class="validation-error" id="email-error">Please enter a valid email address.</div>
                 </div>
@@ -326,75 +292,75 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" class="form-control" required>
                     <div class="validation-error" id="password-error">Please enter your password.</div>
-                    <a href="forgot-password.html" class="forgot-password">Forgot Password?</a>
                 </div>
 
-                <div class="form-group">
+                <div class="form-options">
                     <div class="form-check">
-                        <input type="checkbox" id="remember" class="form-check-input">
-                        <label for="remember" class="form-check-label">Remember me</label>
+                        <input type="checkbox" id="remember-me" class="form-check-input">
+                        <label for="remember-me" class="form-check-label">Remember me</label>
                     </div>
+                    <a href="password-reset.html" class="forgot-password">Forgot password?</a>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                <button type="submit" class="btn">Sign In</button>
             </form>
 
-            <div class="login-footer">
-                <p>Don't have an account? <a href="register.html">Sign up now</a></p>
+            <div class="divider">OR</div>
+
+            <a href="register.html" class="btn btn-secondary">Create New Account</a>
+
+            <div class="register-prompt">
+                Need a TechConnect account? <a href="register.html" class="register-link">Register now</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 TechConnect NZ. All rights reserved. <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms of Service</a></p>
-        </div>
+        &copy; 2025 TechConnect NZ. All rights reserved.
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Simple form validation
             const loginForm = document.getElementById('login-form');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const emailError = document.getElementById('email-error');
-            const passwordError = document.getElementById('password-error');
-
+            
             loginForm.addEventListener('submit', function(e) {
                 e.preventDefault();
+                
                 let isValid = true;
-
+                const email = document.getElementById('email');
+                const password = document.getElementById('password');
+                const emailError = document.getElementById('email-error');
+                const passwordError = document.getElementById('password-error');
+                
+                // Reset errors
+                emailError.style.display = 'none';
+                passwordError.style.display = 'none';
+                
                 // Validate email
-                if (!emailInput.value.trim() || !isValidEmail(emailInput.value)) {
+                if (!email.value || !isValidEmail(email.value)) {
                     emailError.style.display = 'block';
                     isValid = false;
-                } else {
-                    emailError.style.display = 'none';
                 }
-
+                
                 // Validate password
-                if (!passwordInput.value.trim()) {
+                if (!password.value) {
                     passwordError.style.display = 'block';
                     isValid = false;
-                } else {
-                    passwordError.style.display = 'none';
                 }
-
+                
+                // If valid, redirect to dashboard
                 if (isValid) {
-                    // In a real application, this would make an API call to authenticate
-                    console.log('Logging in with:', {
-                        email: emailInput.value,
-                        password: passwordInput.value,
-                        remember: document.getElementById('remember').checked
-                    });
-
-                    // Redirect to dashboard after successful login
+                    // In a real application, this would send a login request to the server
+                    // For demo purposes, simply redirect to the dashboard
                     window.location.href = 'dashboard.html';
                 }
             });
-
+            
+            // Helper function to validate email format
             function isValidEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
             }
         });
     </script>
