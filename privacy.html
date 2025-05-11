@@ -117,12 +117,13 @@
             color: var(--primary);
             margin-bottom: 1rem;
             font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
         }
 
         h3 {
             color: var(--gray-700);
-            margin-bottom: 0.75rem;
-            margin-top: 1.5rem;
+            margin: 1.5rem 0 0.75rem;
             font-size: 1.25rem;
         }
 
@@ -130,7 +131,7 @@
             margin-bottom: 1rem;
         }
 
-        ul {
+        ul, ol {
             margin-bottom: 1.5rem;
             padding-left: 1.5rem;
         }
@@ -147,27 +148,73 @@
             border-radius: 0 4px 4px 0;
         }
 
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
+        .info-box {
+            background-color: rgba(0, 188, 212, 0.1);
+            border: 1px solid var(--secondary-light);
+            padding: 1rem;
+            margin: 1.5rem 0;
             border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 1rem;
-            text-align: center;
-            text-decoration: none;
-            margin-top: 1rem;
         }
 
-        .btn-primary {
+        .date-updated {
+            text-align: right;
+            color: var(--gray-500);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
             background-color: var(--primary);
             color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+            font-size: 1.25rem;
         }
 
-        .btn-primary:hover {
+        .back-to-top:hover {
             background-color: var(--primary-light);
+        }
+
+        .toc {
+            background-color: var(--gray-100);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .toc-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-700);
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc-list a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
         }
 
         footer {
@@ -181,6 +228,13 @@
         @media (max-width: 768px) {
             .content-container {
                 padding: 1.5rem;
+            }
+
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 36px;
+                height: 36px;
             }
         }
     </style>
@@ -199,3 +253,346 @@
     <main class="main">
         <div class="page-header">
             <h1 class="page-title">Privacy Policy: Diversity Data Collection</h1>
+            <p class="page-description">Learn how we collect, use, and protect information on our platform with a special focus on diversity data.</p>
+        </div>
+
+        <div class="content-container">
+            <div class="date-updated">Last Updated: May 10, 2025</div>
+
+            <div class="toc">
+                <div class="toc-title">Table of Contents</div>
+                <ul class="toc-list">
+                    <li><a href="#introduction">1. Introduction</a></li>
+                    <li><a href="#information">2. What Information We Collect</a></li>
+                    <li><a href="#usage">3. How We Use This Information</a></li>
+                    <li><a href="#protection">4. How We Protect Your Information</a></li>
+                    <li><a href="#control">5. Your Control Over Your Data</a></li>
+                    <li><a href="#legal">6. Legal Basis for Processing</a></li>
+                    <li><a href="#sharing">7. Information Sharing</a></li>
+                    <li><a href="#children">8. Children's Privacy</a></li>
+                    <li><a href="#retention">9. Data Retention</a></li>
+                    <li><a href="#international">10. International Data Transfers</a></li>
+                    <li><a href="#changes">11. Changes to This Policy</a></li>
+                    <li><a href="#rights">12. Your Rights</a></li>
+                    <li><a href="#contact">13. Contact Information</a></li>
+                </ul>
+            </div>
+
+            <section class="section" id="introduction">
+                <h2>1. Introduction</h2>
+                <p>At TechConnect Women & Non-Binary Mentorship ("TechConnect NZ," "we," "us," or "our"), we're committed to creating an inclusive platform that serves our diverse community while respecting and protecting your privacy. This policy specifically addresses how we collect, use, and protect your personal information, with special attention to diversity information.</p>
+                <p>This Privacy Policy applies to all information collected through our website (<a href="https://techconnect.nz">techconnect.nz</a>), platform, and related services (collectively, the "Services").</p>
+                <p>We are committed to compliance with the New Zealand Privacy Act 2020 and other applicable privacy laws.</p>
+            </section>
+
+            <section class="section" id="information">
+                <h2>2. What Information We Collect</h2>
+                <p>We collect several types of information to provide and improve our Services:</p>
+
+                <h3>Account Information</h3>
+                <ul>
+                    <li>Full name</li>
+                    <li>Email address</li>
+                    <li>Password (stored in encrypted form)</li>
+                    <li>Professional information (job title, company, experience level)</li>
+                    <li>Skills, expertise, and areas of interest</li>
+                    <li>Profile photos (optional)</li>
+                </ul>
+
+                <h3>Optional Diversity Information</h3>
+                <p>Our registration process includes optional fields related to diversity dimensions:</p>
+                <ul>
+                    <li>Gender identity, including Māori gender identities (tangata ira tāne, whakawāhine)</li>
+                    <li>Ethnicity, including specific options for Māori and Pasifika peoples</li>
+                    <li>LGBTQIA+ identity</li>
+                    <li>Disability status and accessibility needs</li>
+                    <li>Age range</li>
+                    <li>Te Reo Māori proficiency</li>
+                    <li>Region in New Zealand</li>
+                    <li>Connection to the tech community</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <p><strong>Important:</strong> Providing diversity information is completely voluntary. You may choose to answer all, some, or none of these questions. Your decision will not negatively impact your ability to use our platform.</p>
+                </div>
+
+                <h3>Communication and Activity Data</h3>
+                <ul>
+                    <li>Messages exchanged with other users through our platform</li>
+                    <li>Mentorship meeting schedules and frequency</li>
+                    <li>Platform interactions and usage patterns</li>
+                    <li>Feedback and survey responses</li>
+                </ul>
+
+                <h3>Automatically Collected Information</h3>
+                <ul>
+                    <li>IP address</li>
+                    <li>Device information (type, operating system, browser)</li>
+                    <li>Log data (access times, pages viewed)</li>
+                    <li>Cookies and similar tracking technologies</li>
+                </ul>
+            </section>
+
+            <section class="section" id="usage">
+                <h2>3. How We Use This Information</h2>
+                <p>We use the information we collect for the following purposes:</p>
+
+                <h3>Providing and Improving Our Services</h3>
+                <ul>
+                    <li>Creating and managing your account</li>
+                    <li>Facilitating mentorship connections</li>
+                    <li>Enabling communication between users</li>
+                    <li>Improving platform features and user experience</li>
+                    <li>Providing support and responding to inquiries</li>
+                </ul>
+
+                <h3>Diversity Information Usage</h3>
+                <p>We collect diversity information for the following specific purposes:</p>
+                <ol>
+                    <li><strong>Improved Matching:</strong> To enhance our mentorship matching algorithm to consider cultural and identity factors that may be important to your mentorship experience.</li>
+                    <li><strong>Program Evaluation:</strong> To assess how well we're serving diverse communities and identify gaps in representation.</li>
+                    <li><strong>Inclusivity Initiatives:</strong> To develop targeted programs, resources, and events that meet the needs of underrepresented groups in tech.</li>
+                    <li><strong>Reporting:</strong> To create anonymized, aggregated reports on the diversity of our community.</li>
+                </ol>
+                <p>We will never use diversity information to discriminate against any individual or group.</p>
+
+                <h3>Communications</h3>
+                <ul>
+                    <li>Sending administrative communications</li>
+                    <li>Providing updates about our platform and services</li>
+                    <li>Notifying you about potential mentorship matches</li>
+                    <li>Sharing relevant community events and resources</li>
+                </ul>
+
+                <h3>Security and Legal Compliance</h3>
+                <ul>
+                    <li>Protecting the security and integrity of our platform</li>
+                    <li>Preventing and addressing fraud, abuse, and security incidents</li>
+                    <li>Complying with legal obligations</li>
+                    <li>Enforcing our Terms of Service and other policies</li>
+                </ul>
+            </section>
+
+            <section class="section" id="protection">
+                <h2>4. How We Protect Your Information</h2>
+                <p>We take the following measures to protect your personal data, including diversity information:</p>
+
+                <h3>Security Measures</h3>
+                <ul>
+                    <li>Encryption of sensitive information in transit and at rest</li>
+                    <li>Regular security assessments and testing</li>
+                    <li>Industry-standard security protocols and infrastructure</li>
+                    <li>Employee training on data protection and privacy</li>
+                </ul>
+
+                <h3>Diversity Data Protections</h3>
+                <ul>
+                    <li><strong>Limited Access:</strong> Only authorized personnel have access to individual-level diversity data.</li>
+                    <li><strong>Aggregation:</strong> When reporting on diversity statistics, we only share aggregated data that cannot be traced to individuals.</li>
+                    <li><strong>No Third-Party Sharing:</strong> We do not share your individual diversity information with mentors, mentees, or third parties without your explicit consent.</li>
+                    <li><strong>Special Category Treatment:</strong> We treat diversity information as sensitive data with enhanced protections.</li>
+                </ul>
+
+                <div class="info-box">
+                    <p>Despite our best efforts, no method of electronic transmission or storage is 100% secure. We cannot guarantee absolute security of your data but are committed to using commercially reasonable means to protect it.</p>
+                </div>
+            </section>
+
+            <section class="section" id="control">
+                <h2>5. Your Control Over Your Data</h2>
+                <p>You maintain control over your personal information, including diversity data:</p>
+
+                <h3>Diversity Information Controls</h3>
+                <ul>
+                    <li>You can choose not to provide any diversity information by selecting "Prefer not to say" or leaving optional fields blank.</li>
+                    <li>You can update or remove your diversity information at any time through your profile settings.</li>
+                    <li>You can request a complete deletion of your diversity data while maintaining your account.</li>
+                </ul>
+
+                <h3>Account Information Controls</h3>
+                <ul>
+                    <li>You can review and update most personal information through your account settings.</li>
+                    <li>You can control email notifications and communication preferences.</li>
+                    <li>You can set visibility preferences for different parts of your profile.</li>
+                </ul>
+
+                <h3>Account Closure</h3>
+                <p>You may request to close your account at any time. Upon closure:</p>
+                <ul>
+                    <li>Your profile will be removed from the platform</li>
+                    <li>Your personal information will be deleted or anonymized according to our data retention policies</li>
+                    <li>Your messages with other users will be retained for a limited period to maintain conversation context for the other participant</li>
+                </ul>
+            </section>
+
+            <section class="section" id="legal">
+                <h2>6. Legal Basis for Processing</h2>
+                <p>Our collection and processing of your personal information, including diversity information, is based on:</p>
+
+                <h3>Voluntary Consent</h3>
+                <p>Our collection of diversity information is based on your consent, which you provide by voluntarily filling out these fields. You can withdraw this consent at any time.</p>
+
+                <h3>Legitimate Interests</h3>
+                <p>We process certain information based on our legitimate interests in:</p>
+                <ul>
+                    <li>Operating and improving our mentorship platform</li>
+                    <li>Ensuring the safety and security of our community</li>
+                    <li>Promoting diversity and inclusion in the tech industry</li>
+                </ul>
+
+                <h3>Contractual Necessity</h3>
+                <p>We process information necessary to fulfill our Terms of Service agreement with you when you use our platform.</p>
+
+                <h3>Legal Compliance</h3>
+                <p>We may process your information to comply with applicable laws and regulations in New Zealand.</p>
+            </section>
+
+            <section class="section" id="sharing">
+                <h2>7. Information Sharing</h2>
+                <p>We are committed to protecting your privacy and only share your information in limited circumstances:</p>
+
+                <h3>With Other Users</h3>
+                <p>We share certain information with other users as necessary for the mentorship platform to function:</p>
+                <ul>
+                    <li>Profile information you choose to make visible</li>
+                    <li>Messages you send through the platform</li>
+                    <li>Feedback provided about mentorship experiences</li>
+                </ul>
+                <p>We never share your diversity information with other users unless you explicitly choose to display it on your profile.</p>
+
+                <h3>With Service Providers</h3>
+                <p>We may share information with trusted third-party service providers who help us operate our platform:</p>
+                <ul>
+                    <li>Cloud hosting and storage providers</li>
+                    <li>Email and communication services</li>
+                    <li>Analytics and performance monitoring tools</li>
+                    <li>Customer support services</li>
+                </ul>
+                <p>All service providers are bound by contractual obligations to keep personal information confidential and use it only for the purposes for which we disclose it to them.</p>
+
+                <h3>For Legal Reasons</h3>
+                <p>We may disclose information when required by law or in the following circumstances:</p>
+                <ul>
+                    <li>To comply with a legal obligation or process</li>
+                    <li>To protect the rights, property, or safety of TechConnect NZ, our users, or others</li>
+                    <li>In connection with an investigation of suspected or actual illegal activity</li>
+                    <li>In the event of a business transfer (e.g., merger or acquisition)</li>
+                </ul>
+            </section>
+
+            <section class="section" id="children">
+                <h2>8. Children's Privacy</h2>
+                <p>Our Services are not intended for individuals under 18 years of age. We do not knowingly collect personal information from children under 18. If we learn we have collected personal information from a child under 18, we will delete this information promptly.</p>
+                <p>If you believe we might have information from or about a child under 18, please contact us at <a href="mailto:privacy@techconnect.nz">privacy@techconnect.nz</a>.</p>
+            </section>
+
+            <section class="section" id="retention">
+                <h2>9. Data Retention</h2>
+                <p>We retain your personal information for as long as necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. The criteria used to determine our retention periods include:</p>
+                <ul>
+                    <li>The length of time you use our platform and services</li>
+                    <li>Whether there are legal obligations to which we are subject</li>
+                    <li>Whether retention is advisable considering our legal position (e.g., statutes of limitations, litigation, or regulatory investigations)</li>
+                </ul>
+                <p>When personal information is no longer needed, we will securely delete or anonymize it.</p>
+            </section>
+
+            <section class="section" id="international">
+                <h2>10. International Data Transfers</h2>
+                <p>TechConnect NZ is based in New Zealand, and we prioritize the use of local data centers to store your information. However, we may engage service providers outside of New Zealand. When we transfer your information to other countries, we implement appropriate safeguards to ensure your information receives adequate protection, including:</p>
+                <ul>
+                    <li>Using service providers in countries with adequate data protection laws</li>
+                    <li>Implementing contractual protections for data transfers</li>
+                    <li>Ensuring compliance with applicable cross-border data transfer regulations</li>
+                </ul>
+                <p>By using our Services, you consent to the transfer of information to countries outside of New Zealand, which may have different data protection rules than your country.</p>
+            </section>
+
+            <section class="section" id="changes">
+                <h2>11. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by:</p>
+                <ul>
+                    <li>Posting the updated policy on our website</li>
+                    <li>Sending an email to the address associated with your account</li>
+                    <li>Displaying a notice on our platform</li>
+                </ul>
+                <p>We encourage you to review the Privacy Policy whenever you access our Services to stay informed about our information practices and your choices.</p>
+                <p>The date of the latest revision will be indicated at the top of the policy.</p>
+            </section>
+
+            <section class="section" id="rights">
+                <h2>12. Your Rights</h2>
+                <p>Under the New Zealand Privacy Act 2020 and other applicable laws, you have certain rights regarding your personal information:</p>
+
+                <h3>Right to Access</h3>
+                <p>You have the right to request a copy of the personal information we hold about you.</p>
+
+                <h3>Right to Correction</h3>
+                <p>You have the right to request correction of your personal information if it is inaccurate or incomplete.</p>
+
+                <h3>Right to Deletion</h3>
+                <p>You have the right to request deletion of your personal information in certain circumstances, such as when the information is no longer necessary for the purposes for which it was collected.</p>
+
+                <h3>Right to Object</h3>
+                <p>You have the right to object to processing of your personal information in certain circumstances.</p>
+
+                <h3>Right to Restrict Processing</h3>
+                <p>You have the right to request restriction of processing of your personal information in certain circumstances.</p>
+
+                <h3>Right to Data Portability</h3>
+                <p>You have the right to receive your personal information in a structured, commonly used, and machine-readable format.</p>
+
+                <h3>How to Exercise Your Rights</h3>
+                <p>To exercise any of these rights, please contact us using the information provided in the "Contact Information" section below. We will respond to your request within 20 working days.</p>
+                <p>Please note that we may ask you to verify your identity before responding to such requests, and there may be circumstances where we are unable to fulfill your request, in which case we will explain why.</p>
+            </section>
+
+            <section class="section" id="contact">
+                <h2>13. Contact Information</h2>
+                <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
+                <p>Email: <a href="mailto:privacy@techconnect.nz">privacy@techconnect.nz</a></p>
+                <p>Postal Address:<br>
+                TechConnect NZ<br>
+                123 Tech Street<br>
+                Wellington 6011<br>
+                New Zealand</p>
+                <p>For privacy-related complaints, you may also contact the New Zealand Privacy Commissioner at <a href="https://www.privacy.org.nz/" target="_blank">www.privacy.org.nz</a> if you are unsatisfied with our response.</p>
+            </section>
+        </div>
+    </main>
+
+    <a href="#" class="back-to-top">↑</a>
+
+    <footer>
+        &copy; 2025 TechConnect NZ. All rights reserved.
+    </footer>
+
+    <script>
+        // Back to top button functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            var backToTopButton = document.querySelector('.back-to-top');
+            
+            // Show/hide button based on scroll position
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'flex';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+            
+            // Initially hide the button
+            backToTopButton.style.display = 'none';
+            
+            // Smooth scroll to top
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
