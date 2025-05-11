@@ -1,4 +1,348 @@
-color: var(--gray-600);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechConnect NZ | Registration</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .registration-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .registration-header {
+            background-color: var(--gray-100);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .registration-header h2 {
+            font-size: 1.25rem;
+            color: var(--gray-800);
+        }
+
+        .progress-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .progress-tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+            color: var(--gray-500);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress-tab.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .progress-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .progress-tab.completed {
+            color: var(--success);
+        }
+
+        .form-step {
+            display: none;
+            padding: 2rem;
+        }
+
+        .form-step.active {
+            display: block;
+        }
+
+        .form-section {
+            margin-bottom: 2rem;
+        }
+
+        .form-section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--gray-800);
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(186, 104, 200, 0.1);
+            outline: none;
+        }
+
+        .form-text {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .form-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .form-check-group {
+            margin-top: 0.5rem;
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-check-input {
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+
+        .form-check-label {
+            cursor: pointer;
+        }
+
+        .checkboxes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .checkbox-card {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkbox-card:hover {
+            border-color: var(--primary-light);
+            background-color: var(--gray-100);
+        }
+
+        .checkbox-card input {
+            margin-right: 0.75rem;
+        }
+
+        .checkbox-card.checked {
+            border-color: var(--primary);
+            background-color: rgba(156, 39, 176, 0.05);
+        }
+
+        .validation-error {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--gray-400);
+            color: var(--gray-700);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .optional-label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-weight: normal;
+            margin-left: 0.5rem;
+        }
+
+        .diversity-disclosure {
+            background-color: var(--gray-100);
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .diversity-disclosure h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--gray-800);
+        }
+
+        .diversity-disclosure p {
+            font-size: 0.9rem;
+            color: var(--gray-600);
         }
 
         .confirmation-container {
@@ -570,348 +914,316 @@ color: var(--gray-600);
                                     <label for="rural">Rural tech professionals</label>
                                 </div>
                                 <div class="checkbox-card">
-                                    <input type="checkbox" name="mentor-perspective" id="career-transition" value="career<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechConnect NZ | Registration</title>
-    <style>
-        :root {
-            --primary: #9c27b0;
-            --primary-light: #ba68c8;
-            --primary-dark: #7b1fa2;
-            --secondary: #00bcd4;
-            --secondary-light: #4dd0e1;
-            --accent: #ffd54f;
-            --gray-100: #f7fafc;
-            --gray-200: #edf2f7;
-            --gray-300: #e2e8f0;
-            --gray-400: #cbd5e0;
-            --gray-500: #a0aec0;
-            --gray-600: #718096;
-            --gray-700: #4a5568;
-            --gray-800: #2d3748;
-            --gray-900: #1a202c;
-            --success: #48bb78;
-            --error: #e53e3e;
-            --warning: #ed8936;
-            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+                                    <input type="checkbox" name="mentor-perspective" id="career-transition" value="career-transition">
+                                    <label for="career-transition">Career changers</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: var(--font-family);
-        }
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="btn-step-3-prev">Previous</button>
+                        <button type="button" class="btn btn-primary" id="btn-step-3-next">Next Step</button>
+                    </div>
+                </div>
 
-        body {
-            background-color: var(--gray-100);
-            color: var(--gray-800);
-            line-height: 1.6;
-        }
+                <!-- Step 4: Preferences -->
+                <div class="form-step" id="step-4">
+                    <div class="form-section">
+                        <h3 class="form-section-title">Mentorship Preferences</h3>
+                        
+                        <div class="form-group">
+                            <label for="meetingFrequency">Preferred Meeting Frequency</label>
+                            <select id="meetingFrequency" class="form-control" required>
+                                <option value="" selected disabled>Select option</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="fortnightly">Fortnightly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="flexible">Flexible/As needed</option>
+                            </select>
+                            <div class="validation-error" id="meetingFrequency-error">Please select your preferred meeting frequency.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="meetingFormat">Preferred Meeting Format</label>
+                            <select id="meetingFormat" class="form-control" required>
+                                <option value="" selected disabled>Select option</option>
+                                <option value="video">Video calls</option>
+                                <option value="in-person">In-person meetings</option>
+                                <option value="phone">Phone calls</option>
+                                <option value="messaging">Text/messaging</option>
+                                <option value="mixed">Mixed format</option>
+                            </select>
+                            <div class="validation-error" id="meetingFormat-error">Please select your preferred meeting format.</div>
+                        </div>
+                        
+                        <div class="form-group mentor-only" style="display: none;">
+                            <label for="menteesNumber">How many mentees can you support?</label>
+                            <select id="menteesNumber" class="form-control">
+                                <option value="1">1 mentee</option>
+                                <option value="2" selected>2 mentees</option>
+                                <option value="3">3 mentees</option>
+                                <option value="4+">4 or more mentees</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group mentee-only">
+                            <label for="mentorshipGoals">What are your primary goals for this mentorship? (Select up to 3)</label>
+                            <div class="checkboxes-grid">
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="skill-development" value="skill-development">
+                                    <label for="skill-development">Technical skill development</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="career-guidance" value="career-guidance">
+                                    <label for="career-guidance">Career guidance and planning</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="networking" value="networking">
+                                    <label for="networking">Networking opportunities</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="confidence" value="confidence">
+                                    <label for="confidence">Building confidence</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="work-culture" value="work-culture">
+                                    <label for="work-culture">Navigating workplace culture</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="leadership" value="leadership">
+                                    <label for="leadership">Developing leadership skills</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="work-life" value="work-life">
+                                    <label for="work-life">Work-life balance</label>
+                                </div>
+                                <div class="checkbox-card">
+                                    <input type="checkbox" name="mentorship-goals" id="industry-knowledge" value="industry-knowledge">
+                                    <label for="industry-knowledge">Industry-specific knowledge</label>
+                                </div>
+                            </div>
+                            <div class="validation-error" id="mentorship-goals-error">Please select at least one goal (maximum 3).</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h3 class="form-section-title">Additional Information</h3>
+                        
+                        <div class="form-group">
+                            <label for="additionalInfo">Is there anything else you'd like to share about yourself or what you're looking for in a mentorship?</label>
+                            <textarea id="additionalInfo" class="form-control" rows="4" placeholder="Share any additional information that might help us make a good match..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" id="termsAgree" class="form-check-input" required>
+                                <label for="termsAgree" class="form-check-label">I agree to the <a href="terms.html">Terms of Service</a> and <a href="privacy.html">Privacy Policy</a></label>
+                            </div>
+                            <div class="validation-error" id="termsAgree-error">You must agree to the terms to proceed.</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" id="codeOfConduct" class="form-check-input" required>
+                                <label for="codeOfConduct" class="form-check-label">I agree to follow the <a href="code-of-conduct.html">TechConnect Code of Conduct</a></label>
+                            </div>
+                            <div class="validation-error" id="codeOfConduct-error">You must agree to the code of conduct to proceed.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="btn-step-4-prev">Previous</button>
+                        <button type="submit" class="btn btn-primary" id="btn-submit">Complete Registration</button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="confirmation-container" id="confirmation">
+                <div class="confirmation-icon">✓</div>
+                <div class="confirmation-message">
+                    <h2>Registration Complete!</h2>
+                    <p>Thank you for joining TechConnect. Your registration has been submitted successfully.</p>
+                    <p>We'll send you an email shortly with next steps to get started with your mentorship journey.</p>
+                </div>
+                <a href="index.html" class="btn btn-primary">Return to Home</a>
+            </div>
+        </div>
+    </main>
 
-        header {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 700;
-            font-size: 1.25rem;
-            text-decoration: none;
-            color: white;
-        }
-
-        .logo-img {
-            height: 30px;
-            margin-right: 0.75rem;
-        }
-
-        .back-link {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            font-size: 0.9rem;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .main {
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .page-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .page-title {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .page-description {
-            color: var(--gray-600);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .registration-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .registration-header {
-            background-color: var(--gray-100);
-            padding: 1.5rem;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .registration-header h2 {
-            font-size: 1.25rem;
-            color: var(--gray-800);
-        }
-
-        .progress-tabs {
-            display: flex;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .progress-tab {
-            flex: 1;
-            padding: 1rem;
-            text-align: center;
-            font-weight: 500;
-            color: var(--gray-500);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .progress-tab.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .progress-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        .progress-tab.completed {
-            color: var(--success);
-        }
-
-        .form-step {
-            display: none;
-            padding: 2rem;
-        }
-
-        .form-step.active {
-            display: block;
-        }
-
-        .form-section {
-            margin-bottom: 2rem;
-        }
-
-        .form-section-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--gray-800);
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--gray-200);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--gray-700);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--gray-300);
-            border-radius: 4px;
-            font-size: 1rem;
-            color: var(--gray-800);
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(186, 104, 200, 0.1);
-            outline: none;
-        }
-
-        .form-text {
-            font-size: 0.9rem;
-            color: var(--gray-600);
-            margin-top: 0.25rem;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        .form-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .form-check-group {
-            margin-top: 0.5rem;
-        }
-
-        .form-check {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-check-input {
-            margin-right: 0.5rem;
-            cursor: pointer;
-        }
-
-        .form-check-label {
-            cursor: pointer;
-        }
-
-        .checkboxes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 0.5rem;
-        }
-
-        .checkbox-card {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem;
-            border: 1px solid var(--gray-300);
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .checkbox-card:hover {
-            border-color: var(--primary-light);
-            background-color: var(--gray-100);
-        }
-
-        .checkbox-card input {
-            margin-right: 0.75rem;
-        }
-
-        .checkbox-card.checked {
-            border-color: var(--primary);
-            background-color: rgba(156, 39, 176, 0.05);
-        }
-
-        .validation-error {
-            color: var(--error);
-            font-size: 0.85rem;
-            margin-top: 0.25rem;
-            display: none;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 1rem;
-            border-top: 1px solid var(--gray-200);
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-light);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--gray-400);
-            color: var(--gray-700);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .optional-label {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            font-weight: normal;
-            margin-left: 0.5rem;
-        }
-
-        .diversity-disclosure {
-            background-color: var(--gray-100);
-            border-radius: 4px;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .diversity-disclosure h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--gray-800);
-        }
-
-        .diversity-disclosure p {
-            font-size: 0.9rem;
-            color: var(
+    <script>
+        // Form navigation and validation would go here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get URL parameters to check if user came from mentor or mentee button
+            const urlParams = new URLSearchParams(window.location.search);
+            const type = urlParams.get('type');
+            
+            // Set the account type based on URL parameter
+            if (type === 'mentor') {
+                document.getElementById('mentor').checked = true;
+                document.getElementById('registration-type-title').textContent = 'Mentor Registration';
+                showMentorFields();
+            } else {
+                document.getElementById('mentee').checked = true;
+                document.getElementById('registration-type-title').textContent = 'Mentee Registration';
+                showMenteeFields();
+            }
+            
+            // Account type change handler
+            document.querySelectorAll('input[name="accountType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'mentor') {
+                        document.getElementById('registration-type-title').textContent = 'Mentor Registration';
+                        showMentorFields();
+                    } else {
+                        document.getElementById('registration-type-title').textContent = 'Mentee Registration';
+                        showMenteeFields();
+                    }
+                });
+            });
+            
+            // Show/hide mentor/mentee specific fields
+            function showMentorFields() {
+                document.querySelectorAll('.mentor-only').forEach(el => el.style.display = 'block');
+                document.querySelectorAll('.mentee-only').forEach(el => el.style.display = 'none');
+            }
+            
+            function showMenteeFields() {
+                document.querySelectorAll('.mentor-only').forEach(el => el.style.display = 'none');
+                document.querySelectorAll('.mentee-only').forEach(el => el.style.display = 'block');
+            }
+            
+            // Step navigation
+            document.getElementById('btn-step-1-next').addEventListener('click', function() {
+                // Validate step 1
+                // Show step 2
+                document.querySelector('.form-step.active').classList.remove('active');
+                document.getElementById('step-2').classList.add('active');
+                document.querySelector('.progress-tab.active').classList.remove('active');
+                document.querySelector('[data-step="2"]').classList.add('active');
+            });
+            
+            document.getElementById('btn-step-2-prev').addEventListener('click', function() {
+                document.querySelector('.form-step.active').classList.remove('active');
+                document.getElementById('step-1').classList.add('active');
+                document.querySelector('.progress-tab.active').classList.remove('active');
+                document.querySelector('[data-step="1"]').classList.add('active');
+            });
+            
+            document.getElementById('btn-step-2-next').addEventListener('click', function() {
+                // Validate step 2
+                // Show step 3
+                document.querySelector('.form-step.active').classList.remove('active');
+                document.getElementById('step-3').classList.add('active');
+                document.querySelector('.progress-tab.active').classList.remove('active');
+                document.querySelector('[data-step="3"]').classList.add('active');
+            });
+            
+            document.getElementById('btn-step-3-prev').addEventListener('click', function() {
+                document.querySelector('.form-step.active').classList.remove('active');
+                document.getElementById('step-2').classList.add('active');
+                document.querySelector('.progress-tab.active').classList.remove('active');
+                document.querySelector('[data-step="2"]').classList.add('active');
+            });
+            
+            document.getElementById('btn-step-3-next').addEventListener('click', function() {
+                // Validate step 3
+                // Show step 4
+                document.querySelector('.form-step.active').classList.remove('active');
+                document.getElementById('step-4').classList.add('active');
+                document.querySelector('.progress-tab.active').classList.remove('active');
+                document.querySelector('[data-step="4"]').classList.add('active');
+            });
+            
+            document.getElementById('btn-step-4-prev').addEventListener('click', function() {
+                document.querySelector('.form-step.active').classList.remove('active');
+                document.getElementById('step-3').classList.add('active');
+                document.querySelector('.progress-tab.active').classList.remove('active');
+                document.querySelector('[data-step="3"]').classList.add('active');
+            });
+            
+            // Handle form submission
+            document.getElementById('registration-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Validate form
+                // Show confirmation
+                document.getElementById('registration-form').style.display = 'none';
+                document.getElementById('confirmation').style.display = 'block';
+                window.scrollTo(0, 0);
+            });
+            
+            // Cancel button
+            document.getElementById('btn-cancel').addEventListener('click', function() {
+                if (confirm('Are you sure you want to cancel? Your registration information will not be saved.')) {
+                    window.location.href = 'index.html';
+                }
+            });
+            
+            // Checkbox card highlighting
+            const checkboxCards = document.querySelectorAll('.checkbox-card');
+            checkboxCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking directly on the checkbox
+                    if (e.target.type !== 'checkbox') {
+                        const checkbox = this.querySelector('input[type="checkbox"]');
+                        checkbox.checked = !checkbox.checked;
+                        
+                        if (checkbox.checked) {
+                            this.classList.add('checked');
+                        } else {
+                            this.classList.remove('checked');
+                        }
+                    }
+                });
+                
+                // Set initial state
+                const checkbox = card.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        card.classList.add('checked');
+                    } else {
+                        card.classList.remove('checked');
+                    }
+                });
+            });
+            
+            // Handle conditional fields
+            // Gender identity "other" field
+            document.getElementById('genderIdentity').addEventListener('change', function() {
+                if (this.value === 'other') {
+                    document.getElementById('genderOtherContainer').style.display = 'block';
+                } else {
+                    document.getElementById('genderOtherContainer').style.display = 'none';
+                }
+            });
+            
+            // Ethnicity "other" field
+            document.getElementById('other').addEventListener('change', function() {
+                if (this.checked) {
+                    document.getElementById('ethnicityOtherContainer').style.display = 'block';
+                } else {
+                    document.getElementById('ethnicityOtherContainer').style.display = 'none';
+                }
+            });
+            
+            // Disability "other" field
+            document.getElementById('disabilityStatus').addEventListener('change', function() {
+                if (this.value === 'other-disability') {
+                    document.getElementById('disabilityOtherContainer').style.display = 'block';
+                } else {
+                    document.getElementById('disabilityOtherContainer').style.display = 'none';
+                }
+            });
+            
+            // Tech connection "other" field
+            document.getElementById('techConnection').addEventListener('change', function() {
+                if (this.value === 'other-connection') {
+                    document.getElementById('techConnectionOtherContainer').style.display = 'block';
+                } else {
+                    document.getElementById('techConnectionOtherContainer').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
