@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | TechConnect NZ</title>
+    <style>
+        :root {
+            --primary: #9c27b0;
+            --primary-light: #ba68c8;
+            --primary-dark: #7b1fa2;
+            --secondary: #00bcd4;
+            --secondary-light: #4dd0e1;
+            --accent: #ffd54f;
+            --gray-100: #f7fafc;
+            --gray-200: #edf2f7;
+            --gray-300: #e2e8f0;
+            --gray-400: #cbd5e0;
+            --gray-500: #a0aec0;
+            --gray-600: #718096;
+            --gray-700: #4a5568;
+            --gray-800: #2d3748;
+            --gray-900: #1a202c;
+            --success: #48bb78;
+            --error: #e53e3e;
+            --warning: #ed8936;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        body {
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-img {
+            height: 30px;
+            margin-right: 0.75rem;
+        }
+
+        .back-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-header {
+            margin-bottom: 2rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: var(--gray-600);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-form-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .contact-info-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        h3 {
+            color: var(--gray-700);
+            margin: 1.5rem 0 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(156, 39, 176, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info-content {
+            flex-grow: 1;
+        }
+
+        .contact-info-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--gray-700);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            font-size: 1rem;
+            color: var(--gray-800);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 3px rgba(186, 104, 200, 0.1);
+            outline: none;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-text {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            margin-top: 0.25rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-light);
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--gray-300);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            background-color: var(--gray-100);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 1rem;
+            border-top: 1px solid var(--gray-300);
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+        }
+
+        .success-message {
+            display: none;
+            background-color: var(--success);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .error-message {
+            display: none;
+            background-color: var(--error);
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .map-container {
+            height: 250px;
+            background-color: var(--gray-300);
+            border-radius: 4px;
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+        }
+
+        .hours-table tr {
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .hours-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .hours-table td {
+            padding: 0.5rem 0;
+        }
+
+        .hours-table td:last-child {
+            text-align: right;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem 0;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form-container, .contact-info-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="/api/placeholder/30/30" alt="TechConnect Logo" class="logo-img">
+                TechConnect NZ
+            </a>
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="page-header">
+            <h1 class="page-title">Contact Us</h1>
+            <p class="page-description">Get in touch with our team for support, feedback, or any questions about TechConnect NZ.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-form-container">
+                <h2>Send Us a Message</h2>
+                <p>We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <div class="success-message" id="success-message">
+                    Your message has been sent successfully. We'll respond to you shortly!
+                </div>
+                
+                <div class="error-message" id="error-message">
+                    There was a problem sending your message. Please try again or contact us directly.
+                </div>
+                
+                <form id="contact-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" class="form-control" required>
+                            <option value="" selected disabled>Please select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="mentorship">Mentorship Question</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="feedback">Platform Feedback</option>
+                            <option value="accessibility">Accessibility Support</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="how-heard">How did you hear about us? (Optional)</label>
+                        <select id="how-heard" name="how-heard" class="form-control">
+                            <option value="" selected>Please select (optional)</option>
+                            <option value="search">Search Engine</option>
+                            <option value="social">Social Media</option>
+                            <option value="friend">Friend or Colleague</option>
+                            <option value="event">Tech Event</option>
+                            <option value="organization">Professional Organization</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+                </form>
+            </div>
+            
+            <div class="contact-info-container">
+                <h2>Contact Information</h2>
+                <p>Here are the different ways you can reach our team:</p>
+                
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">📧</div>
+                    <div class="contact-info-content">
+                        <div class="contact-info-title">Email Us</div>
+                        <p>General Inquiries: <a href="mailto:info@techconnect.nz">info@techconnect.nz</a></p>
+                        <p>Support: <a href="mailto:support@techconnect.nz">support@techconnect.nz</a></p>
+                        <p>Accessibility: <a href="mailto:accessibility@techconnect.nz">accessibility@techconnect.nz</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">📞</div>
+                    <div class="contact-info-content">
+                        <div class="contact-info-title">Call Us</div>
+                        <p>Phone: +64 4 123 4567</p>
+                        <p class="form-text">Our support team is available during business hours:</p>
+                        <table class="hours-table">
+                            <tr>
+                                <td>Monday - Friday</td>
+                                <td>9:00am - 5:00pm NZST</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>10:00am - 2:00pm NZST</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>Closed</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="contact-info-item">
+                    <div class="contact-info-icon">📬</div>
+                    <div class="contact-info-content">
+                        <div class="contact-info-title">Postal Address</div>
+                        <p>TechConnect NZ<br>
+                        123 Tech Street<br>
+                        Wellington 6011<br>
+                        New Zealand</p>
+                    </div>
+                </div>
+                
+                <div class="map-container">
+                    [Map Placeholder]
+                </div>
+                
+                <h3>Frequently Asked Questions</h3>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            How quickly will I receive a response to my inquiry?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            We aim to respond to all inquiries within 1-2 business days. For urgent matters, please call our support line during business hours.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            I'm having technical issues with the platform. What should I do?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            For technical support, please email support@techconnect.nz with details of the issue you're experiencing, including any error messages and the device/browser you're using. Screenshots are helpful when applicable.
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            How can I provide feedback about the platform?
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            We welcome feedback! You can use this contact form (select "Platform Feedback" as the subject), or email feedback@techconnect.nz directly. Your insights help us improve the TechConnect experience for everyone.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2025 TechConnect NZ. All rights reserved.
+    </footer>
+
+    <script>
+        // Form submission handling
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, you would send the form data to a server here
+            // For demonstration purposes, we'll just show the success message
+            
+            // Simulate form submission
+            setTimeout(function() {
+                document.getElementById('contact-form').reset();
+                document.getElementById('success-message').style.display = 'block';
+                
+                // Hide success message after 5 seconds
+                setTimeout(function() {
+                    document.getElementById('success-message').style.display = 'none';
+                }, 5000);
+            }, 1000);
+        });
+        
+        // FAQ toggle functionality
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const isActive = answer.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.faq-question span').forEach(item => {
+                item.textContent = '+';
+            });
+            
+            // Open the clicked FAQ if it wasn't already active
+            if (!isActive) {
+                answer.classList.add('active');
+                element.querySelector('span').textContent = '−';
+            }
+        }
+    </script>
+</body>
+</html>
